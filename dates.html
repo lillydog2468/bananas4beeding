@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <title>Dates · Bananas for beading</title>
+</head>
+<body>
+<header class="site-header">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap header-inner">
+    <a href="index.html" class="wordmark" aria-label="Bananas for beading home">
+      <span class="wordmark-row">Bananas<svg class="banana" viewBox="0 0 40 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#F5C518" stroke="#1F4A38" stroke-width="1.8" stroke-linejoin="round" d="M10 8c1.5-5 12-7 20 1 10 10 14 28 8 40-3 6-11 7-14 2-4-7-5-16-8-24C14 20 10 16 9 12c-.5-2 .2-3.2 1-4z"/><path fill="#1F4A38" d="M12 6.5c2-1.5 5-1.5 7 0-2 .8-4 1.2-7 3-1-1.2-1-2.2 0-3z"/></svg></span>
+      <span class="wordmark-sub">for beading</span>
+    </a>
+    <div class="header-right">
+      <p class="tagline-hand">Get in touch with your beads.</p>
+      <nav class="nav-main" aria-label="Main"><a href="tours.html">Tours</a><a href="dates.html" class="is-current" aria-current="page">Dates</a><a href="about.html">About</a><a href="happy-customers.html">Happy customers</a><a href="contact.html">Contact</a></nav>
+    </div>
+    <p class="mad-line"><span class="ydot"></span> for ladies who are mad about their beads <span class="ydot"></span></p>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+    <h1>Dates</h1>
+    <p class="dates-intro">2026 calendar. Booked / busy days are marked <span class="mark-yellow">yellow</span>. Open group spaces listed <span class="mark-below">below</span>.</p>
+    <div class="year-tabs" role="tablist" aria-label="Year">
+      <button type="button" role="tab" id="tab-2026" aria-controls="cal-2026" aria-selected="true">2026</button>
+      <button type="button" role="tab" id="tab-2027" aria-controls="cal-2027" aria-selected="false">2027</button>
+    </div>
+    <div id="cal-2026" class="year-panel" role="tabpanel" aria-labelledby="tab-2026">
+      <div class="year-grid" data-year="2026"></div>
+    </div>
+    <div id="cal-2027" class="year-panel" role="tabpanel" aria-labelledby="tab-2027" hidden>
+      <p class="note dates-intro">A 2027 calendar is not published yet. Email us about 2027 dates rather than copying 2026.</p>
+      <div class="year-grid" data-year="2027"></div>
+    </div>
+    <div class="legend" aria-hidden="true">
+      <span><span class="swatch busy"></span> = busy / booked</span>
+      <span><span class="swatch open"></span> = open spaces</span>
+    </div>
+    <p class="dates-note">Day trips may still be possible on <span class="mark-yellow">yellow</span> dates — email to confirm.</p>
+    <div class="dates-book">
+      <p>Ladies without their own groups welcome.</p>
+      <p>Minimum 2, or join an existing group.</p>
+      <p>Email <a href="mailto:bananas4beading@icloud.com"><strong>bananas4beading@icloud.com</strong></a></p>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="foot-contact">bananas4beading.com <span class="ydot"></span> <a href="tel:+420606588330">+420 606 588 330</a></p>
+    <p class="foot-copy">© Bananas for beading · bananas4beading.com</p>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

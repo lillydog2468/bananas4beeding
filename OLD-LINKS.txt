@@ -1,0 +1,16 @@
+Old EverWeb filename                  New file
+-----------------------------------   -----------------
+most-popular-old.html              -> tours.html
+dates--2026.html                   -> dates.html
+dates-2027.html                    -> dates.html
+contact-us-.html                   -> contact.html
+about-us.html                      -> about.html
+pricing-2026.html                  -> pricing.html
+videos-.html                       -> videos.html
+index.html                         stays
+day-trips.html                     stays
+happy-customers.html               stays
+written-about-us.html              stays
+
+Tiny redirect files with those old names are included, so old bookmarks
+should hop across to the new pages.

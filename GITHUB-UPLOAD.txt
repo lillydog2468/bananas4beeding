@@ -1,0 +1,74 @@
+Put this site on GitHub Pages
+=============================
+
+For someone who is not a developer. All of this is done in a web
+browser at github.com. No Git, no Terminal, no Node.
+
+Keep the old EverWeb site live until the GitHub site looks right.
+
+1. Log in at github.com
+2. Click the “+” (top right) → New repository
+3. Repository name: bananas4beading
+4. Choose Public
+5. Do not tick “Add a README” (not needed)
+6. Click Create repository
+
+Upload the files
+----------------
+7. On the empty repo page, click “Add file” → “Upload files”
+8. On your computer, open the bananas4beading folder. Select
+   EVERYTHING inside it (all the .html files, styles.css, script.js,
+   favicon.svg, CNAME, .nojekyll, the images folder, and the .txt files).
+   Drag them onto the GitHub page, or use the file picker.
+9. Scroll down. Click “Commit changes”
+
+Turn on GitHub Pages
+--------------------
+10. Click Settings (top tab of the repository)
+11. In the left menu, click Pages
+12. Under “Build and deployment”:
+      Source: Deploy from a branch
+      Branch: main
+      Folder: / (root)
+13. Click Save
+14. Wait a minute or two.
+
+Test on github.io FIRST
+-----------------------
+15. Visit:
+      https://YOUR-GITHUB-USERNAME.github.io/bananas4beading/
+    (swap YOUR-GITHUB-USERNAME for your real GitHub username)
+
+    Click around. Check Dates, Contact, old links such as
+    most-popular-old.html.
+
+About the CNAME file
+--------------------
+This folder already contains a file named CNAME whose only line is:
+
+      bananas4beading.com
+
+If you are testing on github.io first, you may want to leave that
+file out of the first upload, or delete it on GitHub until you are
+ready to point the real domain. Add / upload CNAME when you switch
+the domain. Keep EverWeb live until the GitHub site looks right.
+
+Custom domain (do this later)
+-----------------------------
+16. Pages settings → Custom domain: bananas4beading.com
+    Also add www.bananas4beading.com if GitHub asks.
+17. At the place where you bought the domain (the registrar), set
+    A records for @ (the bare domain) to:
+
+      185.199.108.153
+      185.199.109.153
+      185.199.110.153
+      185.199.111.153
+
+18. Set a CNAME record for www → YOUR-GITHUB-USERNAME.github.io
+19. Back on GitHub Pages settings, tick “Enforce HTTPS” when GitHub
+    allows it (it can take a little while).
+20. Only then stop using EverWeb.
+
+If something is wrong, point the domain back to EverWeb at the
+registrar until you have fixed it.

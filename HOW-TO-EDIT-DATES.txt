@@ -1,0 +1,43 @@
+How to change open or busy dates
+================================
+
+You do this on github.com in a web browser. No Terminal needed.
+
+1. Go to github.com and sign in.
+2. Open the bananas4beading repository.
+3. Click the file named script.js
+4. Click the pencil icon (Edit this file) near the top right.
+5. Near the top you will see two lists:
+
+      const OPEN = [
+        '2026-04-07',
+        '2026-04-08',
+        ...
+      ];
+
+      const BUSY = []; // owner adds YYYY-MM-DD
+
+6. Dates must look like 'YYYY-MM-DD' with quotes, and a comma after
+   each date except the last one.
+
+   To mark a day as an open space, add it inside OPEN.
+   To mark a day as busy / booked, add it inside BUSY.
+
+   Example of adding a booked week in September 2026:
+
+      const BUSY = [
+        '2026-09-14',
+        '2026-09-15',
+        '2026-09-16',
+        '2026-09-17',
+        '2026-09-18'
+      ];
+
+7. Scroll to the bottom. Click “Commit changes”. Confirm.
+8. Wait a minute, then reload the Dates page on the live site.
+   Green outline = OPEN. Yellow fill = BUSY.
+
+To add 2027 open weeks later, put those dates in OPEN too
+(for example '2027-05-10'). They will outline on the 2027 tab.
+Do not copy April/June 2026 onto 2027 unless those really are
+the 2027 dates.
