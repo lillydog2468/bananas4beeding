@@ -37,27 +37,32 @@ a { color: var(--green); }
 }
 
 /* Header */
-.site-header { padding: 1.1rem 0 0.4rem; }
+.site-header { padding: 0.45rem 0 0.4rem; }
 .header-inner {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.35rem 1.5rem;
+  gap: 0.35rem;
 }
-.wordmark { text-decoration: none; color: var(--green); }
-.wordmark-row {
-  display: flex; align-items: flex-end; gap: 0.12em;
-  font-family: var(--display);
-  font-size: clamp(2.8rem, 12vw, 5.4rem);
-  font-weight: 700; line-height: 0.9; letter-spacing: -0.03em;
-  color: var(--green);
-}
-.banana { width: 0.55em; height: 0.78em; margin-bottom: 0.02em; }
-.wordmark-sub {
+.logo-home {
   display: block;
-  font-family: var(--sans);
-  font-size: clamp(1rem, 3.2vw, 1.35rem);
-  font-weight: 600; color: var(--green);
-  margin: 0.15rem 0 0 0.05rem;
+  text-decoration: none;
+  cursor: pointer;
+  outline: 3px solid transparent;
+  outline-offset: 3px;
+}
+.logo-home img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.logo-home:hover,
+.logo-home:focus-visible {
+  cursor: pointer;
+  outline-color: var(--yellow);
+}
+.logo-home:hover img,
+.logo-home:focus-visible img {
+  filter: brightness(1.03);
 }
 .header-right { }
 .tagline-hand {
@@ -65,10 +70,6 @@ a { color: var(--green); }
   margin: 0.4rem 0 0.35rem; display: inline-block;
   line-height: 1.15; padding-bottom: 0.12em;
   background: linear-gradient(transparent 70%, var(--yellow) 70%) bottom / 100% 0.38em no-repeat;
-}
-.mad-line {
-  font-family: var(--sans); font-size: 0.78rem; color: var(--green);
-  letter-spacing: 0.01em; margin: 0.15rem 0 0.6rem;
 }
 .nav-main {
   display: flex; flex-wrap: wrap; align-items: center;
@@ -87,13 +88,10 @@ a { color: var(--green); }
 
 @media (min-width: 800px) {
   .header-inner {
-    grid-template-columns: 1fr auto;
-    align-items: start;
+    grid-template-columns: 1fr;
   }
-  .wordmark { grid-column: 1; grid-row: 1; }
-  .header-right { grid-column: 2; grid-row: 1; text-align: right; padding-top: 0.4rem; }
-  .mad-line { grid-column: 1; grid-row: 2; margin-top: 0.15rem; }
-  .tagline-hand { font-size: 1.7rem; margin-top: 0; }
+  .header-right { text-align: right; }
+  .tagline-hand { font-size: 1.7rem; margin-top: 0.15rem; }
   .nav-main { justify-content: flex-end; }
 }
 
