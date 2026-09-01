@@ -36,40 +36,91 @@ a { color: var(--green); }
   vertical-align: 0.12em; margin: 0 0.35em;
 }
 
-/* Header */
-.site-header { padding: 0.45rem 0 0.4rem; }
+/* Header — compact banner, not a full-bleed poster */
+.site-header { padding: 0.65rem 0 0.5rem; }
 .header-inner {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.35rem;
+  grid-template-areas:
+    "logo"
+    "mad"
+    "right";
+  gap: 0.2rem 1.5rem;
+  align-items: start;
 }
 .logo-home {
-  display: block;
+  grid-area: logo;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: max-content;
+  max-width: 100%;
   text-decoration: none;
+  color: var(--green);
   cursor: pointer;
   outline: 3px solid transparent;
-  outline-offset: 3px;
-}
-.logo-home img {
-  width: 100%;
-  height: auto;
-  display: block;
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 .logo-home:hover,
 .logo-home:focus-visible {
-  cursor: pointer;
   outline-color: var(--yellow);
 }
-.logo-home:hover img,
-.logo-home:focus-visible img {
-  filter: brightness(1.03);
+.logo-mark {
+  height: 4.1rem;
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
+  display: block;
 }
-.header-right { }
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  color: var(--green);
+  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+  line-height: 0.9;
+}
+.wordmark-bananas {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+.wordmark-row2 {
+  display: flex;
+  align-items: baseline;
+  margin-top: 0.02em;
+}
+.wordmark-four {
+  display: inline-block;
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  border-bottom: 3px solid var(--yellow);
+  padding-bottom: 1px;
+  margin-right: 0.28em;
+  line-height: 0.9;
+}
+.wordmark-beading {
+  font-family: var(--hand);
+  font-weight: 600;
+  font-size: 0.72em;
+  line-height: 1;
+}
+.header-right { grid-area: right; }
 .tagline-hand {
   font-family: var(--hand); font-size: 1.55rem; color: var(--green);
-  margin: 0.4rem 0 0.35rem; display: inline-block;
+  margin: 0.25rem 0 0.3rem; display: inline-block;
   line-height: 1.15; padding-bottom: 0.12em;
   background: linear-gradient(transparent 70%, var(--yellow) 70%) bottom / 100% 0.38em no-repeat;
+}
+.mad-line {
+  grid-area: mad;
+  font-family: var(--hand);
+  font-size: 1.15rem;
+  color: var(--green);
+  margin: 0.05rem 0 0.15rem;
+  line-height: 1.2;
 }
 .nav-main {
   display: flex; flex-wrap: wrap; align-items: center;
@@ -87,12 +138,19 @@ a { color: var(--green); }
 .nav-main a.is-current { font-weight: 700; }
 
 @media (min-width: 800px) {
+  .site-header { padding: 0.7rem 0 0.55rem; }
   .header-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "logo right"
+      "mad right";
+    align-items: start;
   }
-  .header-right { text-align: right; }
-  .tagline-hand { font-size: 1.7rem; margin-top: 0.15rem; }
-  .nav-main { justify-content: flex-end; }
+  .logo-mark { height: 5.4rem; }
+  .header-right { text-align: right; padding-top: 0.2rem; }
+  .tagline-hand { font-size: 1.7rem; margin-top: 0; }
+  .nav-main { justify-content: flex-end; flex-wrap: nowrap; }
+  .mad-line { margin-top: 0.1rem; }
 }
 
 /* Buttons */
