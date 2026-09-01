@@ -231,3 +231,20 @@ p { margin: 0 0 0.85rem; }
 .foot-copy { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--muted); }
 .foot-extra { margin: 0.55rem 0 0; font-size: 0.82rem; color: var(--muted); }
 .foot-extra a { color: var(--muted); }
+
+.quote-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+.quote-photo {
+  width: 7.5rem;
+  height: 9.4rem;
+  object-fit: cover;
+  border-radius: 8px;
+}
+@media (min-width: 700px) {
+  .quote-body { flex-direction: row; align-items: flex-start; }
+  .quote-photo { flex: 0 0 7.5rem; }
+}
