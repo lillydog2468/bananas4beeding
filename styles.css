@@ -116,7 +116,12 @@ a { color: var(--green); }
 /* Home */
 .hero { margin: 0.4rem auto 1.2rem; }
 .hero img {
-  width: 100%; border-radius: 12px; object-fit: cover; max-height: 420px;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
 }
 .home-band { display: grid; gap: 0.5rem 2rem; margin-bottom: 1.4rem; }
 .home-copy p { margin: 0 0 0.55rem; color: var(--green); }
