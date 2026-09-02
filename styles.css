@@ -175,7 +175,7 @@ a { color: var(--green); }
 .hero-rotator {
   position: relative;
   width: 100%;
-  height: min(11.5rem, 28vh);
+  height: min(16.5rem, 38vh);
 }
 .hero-rotator img {
   position: absolute;
