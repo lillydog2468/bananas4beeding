@@ -140,16 +140,17 @@ a { color: var(--green); }
 @media (min-width: 800px) {
   .site-header { padding: 0.7rem 0 0.55rem; }
   .header-inner {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: auto auto 1fr;
     grid-template-areas:
-      "logo right"
-      "mad right";
+      "logo right ."
+      "mad mad .";
+    column-gap: 2.5rem;
     align-items: start;
   }
   .logo-mark { height: 5.4rem; }
-  .header-right { text-align: right; padding-top: 0.2rem; }
+  .header-right { text-align: left; padding-top: 0.2rem; }
   .tagline-hand { font-size: 1.7rem; margin-top: 0; }
-  .nav-main { justify-content: flex-end; flex-wrap: nowrap; }
+  .nav-main { justify-content: flex-start; flex-wrap: nowrap; }
   .mad-line { margin-top: 0.1rem; }
 }
 
@@ -170,16 +171,31 @@ a { color: var(--green); }
 }
 
 /* Home */
-.hero { margin: 0.4rem auto 1.2rem; }
-.hero img {
+.hero { margin: 0.25rem auto 0.7rem; }
+.hero-rotator {
+  position: relative;
   width: 100%;
-  height: auto;
-  max-height: none;
+  height: min(11.5rem, 28vh);
+}
+.hero-rotator img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 12px;
-  display: block;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
 }
-.home-band { display: grid; gap: 0.5rem 2rem; margin-bottom: 1.4rem; }
+.hero-rotator img.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-rotator img { transition: none; }
+}
+.home-band { display: grid; gap: 0.5rem 2rem; margin-bottom: 0.85rem; }
 .home-copy p { margin: 0 0 0.55rem; color: var(--green); }
 .home-copy .lede { font-size: 1.22rem; }
 @media (min-width: 800px) {
@@ -193,7 +209,7 @@ a { color: var(--green); }
 }
 @media (min-width: 900px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
 .tile { text-decoration: none; color: var(--green); text-align: center; }
-.tile img { width: 100%; height: 8.2rem; object-fit: cover; border-radius: 10px; }
+.tile img { width: 100%; height: 6.6rem; object-fit: cover; border-radius: 10px; }
 .tile-label {
   display: block; font-family: var(--sans); font-weight: 600;
   margin-top: 0.45rem; font-size: 0.98rem;
