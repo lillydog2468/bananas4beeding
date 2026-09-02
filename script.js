@@ -109,12 +109,21 @@ function setupHeroRotator() {
   if (!box) return;
   const slides = box.querySelectorAll('img');
   if (slides.length < 2) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let i = 0;
+  function show() {
+    const two = window.matchMedia('(min-width: 700px)').matches;
+    const count = two ? Math.min(2, slides.length) : 1;
+    slides.forEach(function (img) { img.classList.remove('is-active'); });
+    for (let n = 0; n < count; n++) {
+      slides[(i + n) % slides.length].classList.add('is-active');
+    }
+  }
+  show();
+  if (reduce) return;
   setInterval(function () {
-    slides[i].classList.remove('is-active');
     i = (i + 1) % slides.length;
-    slides[i].classList.add('is-active');
+    show();
   }, 5000);
 }
 
