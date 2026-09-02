@@ -104,8 +104,23 @@ function setupMailtoForm() {
   });
 }
 
+function setupHeroRotator() {
+  const box = document.querySelector('.hero-rotator');
+  if (!box) return;
+  const slides = box.querySelectorAll('img');
+  if (slides.length < 2) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let i = 0;
+  setInterval(function () {
+    slides[i].classList.remove('is-active');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('is-active');
+  }, 5000);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.year-grid[data-year]').forEach(drawYear);
   setupTabs();
   setupMailtoForm();
+  setupHeroRotator();
 });
