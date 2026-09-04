@@ -339,3 +339,28 @@ p { margin: 0 0 0.85rem; }
     width: 18.75rem;
   }
 }
+
+
+/* Story pages — photos between paragraphs */
+.story-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 0.7rem 0 1.2rem;
+  display: block;
+}
+.story-photos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+  margin: 0.7rem 0 1.2rem;
+}
+@media (min-width: 700px) {
+  .story-photos { grid-template-columns: 1fr 1fr; }
+}
+.story-photos img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
