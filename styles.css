@@ -364,3 +364,17 @@ p { margin: 0 0 0.85rem; }
   border-radius: 12px;
   display: block;
 }
+
+.story-fig {
+  margin: 0.7rem 0 1.2rem;
+}
+.story-fig .story-photo {
+  margin: 0 0 0.45rem;
+}
+.story-cap {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #5a4a3a;
+  font-style: italic;
+}
