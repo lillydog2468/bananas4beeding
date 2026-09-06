@@ -242,9 +242,44 @@ function setupHeroRotator() {
   }, 5000);
 }
 
+
+
+function setupTourSlideshows() {
+  const rows = document.querySelectorAll('[data-slideshow]');
+  if (!rows.length) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  rows.forEach(function (row) {
+    let images;
+    try { images = JSON.parse(row.getAttribute('data-images') || '[]'); }
+    catch (e) { return; }
+    if (!images.length) return;
+    const imgs = row.querySelectorAll('.slide-slot img');
+    if (!imgs.length) return;
+    let offset = 0;
+    function paint() {
+      imgs.forEach(function (img, slot) {
+        const src = images[(offset + slot) % images.length];
+        if (img.getAttribute('src') === src) return;
+        img.classList.add('is-fading');
+        window.setTimeout(function () {
+          img.src = src;
+          img.classList.remove('is-fading');
+        }, 200);
+      });
+    }
+    paint();
+    if (reduce || images.length <= 3) return;
+    window.setInterval(function () {
+      offset = (offset + 1) % images.length;
+      paint();
+    }, 4200);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.year-grid[data-year]').forEach(drawYear);
   setupTabs();
   setupMailtoForm();
   setupHeroRotator();
+  setupTourSlideshows();
 });
