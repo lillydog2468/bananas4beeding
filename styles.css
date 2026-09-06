@@ -452,23 +452,23 @@ p { margin: 0 0 0.85rem; }
 }
 
 
-/* Tour inspiration 3-slot photo slideshows */
+/* Tour inspiration: one long box, three photos across */
 .slide-row {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.65rem;
-  margin: 1rem 0 1.75rem;
-}
-@media (min-width: 640px) {
-  .slide-row { grid-template-columns: repeat(3, 1fr); }
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  margin: 1.25rem 0 1.85rem;
+  padding: 0.4rem;
+  border-radius: 12px;
+  background: #f7f2e6;
+  box-shadow: 0 2px 12px rgba(40, 30, 10, 0.08);
 }
 .slide-slot {
   margin: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
-  background: #f3eee0;
+  background: #efe8d8;
   aspect-ratio: 4 / 3;
-  box-shadow: 0 2px 12px rgba(40, 30, 10, 0.1);
 }
 .slide-slot img {
   width: 100%;
