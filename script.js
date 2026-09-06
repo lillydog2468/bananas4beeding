@@ -1,5 +1,6 @@
 /* Keith: to change dates, edit OPEN and BUSY below, then save. */
-const OPEN = [];
+const OPEN = [
+];
 const BUSY = [
   '2026-01-23',
   '2026-01-24',
@@ -122,7 +123,6 @@ const BUSY = [
   '2026-10-29',
   '2026-10-30',
   '2026-10-31',
-  '2026-12-01',
   '2027-09-06',
   '2027-09-07',
   '2027-09-08',
