@@ -269,10 +269,11 @@ function setupTourSlideshows() {
     }
     paint();
     if (reduce || images.length <= 3) return;
+    // Advance by a full row so a photo never slides from one box into another
     window.setInterval(function () {
-      offset = (offset + 1) % images.length;
+      offset = (offset + imgs.length) % images.length;
       paint();
-    }, 4200);
+    }, 4500);
   });
 }
 
