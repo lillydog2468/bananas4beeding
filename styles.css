@@ -480,3 +480,34 @@ p { margin: 0 0 0.85rem; }
 .slide-slot img.is-fading {
   opacity: 0.35;
 }
+
+/* Quiet secondary links lower on the homepage */
+.home-more {
+  margin: 0.5rem auto 2rem;
+  padding-top: 0.25rem;
+  text-align: center;
+}
+.home-more-label {
+  margin: 0 0 0.55rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.home-more-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.1rem;
+}
+.home-more-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.98rem;
+  border-bottom: 1px solid transparent;
+}
+.home-more-links a:hover,
+.home-more-links a:focus-visible {
+  color: var(--ink, #2a2418);
+  border-bottom-color: currentColor;
+}
