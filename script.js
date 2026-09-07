@@ -244,6 +244,57 @@ function setupHeroRotator() {
 
 
 
+
+function setupTourSeasonAnalytics() {
+  if (typeof gtag !== 'function') return;
+  var path = (location.pathname || '').toLowerCase();
+  var page = path.split('/').pop() || 'index.html';
+  if (!page || page.indexOf('.') === -1) page = 'index.html';
+
+  var pageEvents = {
+    'pricing.html': 'view_pricing',
+    'dates.html': 'view_dates',
+    'tour-inspiration.html': 'view_tour_inspiration',
+    'tours.html': 'view_tour_inspiration',
+    'day-trips.html': 'view_day_trips',
+    'contact.html': 'view_contact',
+    'happy-customers.html': 'view_happy_customers'
+  };
+  if (pageEvents[page]) {
+    gtag('event', pageEvents[page], {
+      event_category: 'tour_season',
+      page_path: location.pathname + location.search
+    });
+  }
+
+  document.querySelectorAll('a.btn').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var href = (a.getAttribute('href') || '').toLowerCase();
+      var label = (a.textContent || '').trim().slice(0, 80);
+      var name = 'cta_click';
+      if (href.indexOf('contact') !== -1 || /enquir/i.test(label)) name = 'enquire_click';
+      else if (href.indexOf('pricing') !== -1 || /price/i.test(label)) name = 'pricing_click';
+      else if (href.indexOf('dates') !== -1) name = 'dates_click';
+      else if (href.indexOf('tour') !== -1 || href.indexOf('tours') !== -1) name = 'tour_click';
+      gtag('event', name, {
+        event_category: 'tour_season',
+        event_label: label,
+        link_url: href
+      });
+    });
+  });
+
+  var form = document.getElementById('enquire-form');
+  if (form) {
+    form.addEventListener('submit', function () {
+      gtag('event', 'enquire_submit', {
+        event_category: 'tour_season',
+        event_label: 'contact_form'
+      });
+    });
+  }
+}
+
 function setupTourSlideshows() {
   const rows = document.querySelectorAll('[data-slideshow]');
   if (!rows.length) return;
