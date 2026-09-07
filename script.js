@@ -283,4 +283,5 @@ document.addEventListener('DOMContentLoaded', function () {
   setupMailtoForm();
   setupHeroRotator();
   setupTourSlideshows();
+  setupTourSeasonAnalytics();
 });
