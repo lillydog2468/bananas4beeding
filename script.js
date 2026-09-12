@@ -296,6 +296,48 @@ function setupTourSeasonAnalytics() {
 }
 
 
+
+function setupYtScrollAndEnlarge() {
+  var cards = document.querySelectorAll('.yt-card[data-yt-id]');
+  if (!cards.length) return;
+
+  function post(iframe, func) {
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var iframe = entry.target.querySelector('iframe');
+        if (!iframe) return;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.4) post(iframe, 'playVideo');
+        else post(iframe, 'pauseVideo');
+      });
+    }, { threshold: [0, 0.4, 0.75] });
+    cards.forEach(function (card) {
+      var host = card.querySelector('[data-yt-host]');
+      if (host) io.observe(host);
+    });
+  }
+
+  var dlg = document.getElementById('yt-lightbox');
+  var host = dlg ? dlg.querySelector('[data-yt-lightbox-host]') : null;
+  cards.forEach(function (card) {
+    var btn = card.querySelector('[data-yt-enlarge]');
+    if (!btn || !dlg || !host) return;
+    btn.addEventListener('click', function () {
+      var id = card.getAttribute('data-yt-id');
+      host.innerHTML = '<iframe title="Enlarged video" src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+      if (typeof dlg.showModal === 'function') dlg.showModal();
+      else dlg.setAttribute('open', '');
+    });
+  });
+  if (dlg) {
+    dlg.addEventListener('close', function () { if (host) host.innerHTML = ''; });
+  }
+}
+
 function setupHistoryAutoplay() {
   var videos = document.querySelectorAll('video.history-autoplay');
   if (!videos.length) return;
@@ -358,4 +400,5 @@ document.addEventListener('DOMContentLoaded', function () {
   setupTourSlideshows();
   setupTourSeasonAnalytics();
   setupHistoryAutoplay();
+  setupYtScrollAndEnlarge();
 });
