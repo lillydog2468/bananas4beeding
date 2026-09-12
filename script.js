@@ -295,6 +295,28 @@ function setupTourSeasonAnalytics() {
   }
 }
 
+
+function setupHistoryAutoplay() {
+  var videos = document.querySelectorAll('video.history-autoplay');
+  if (!videos.length) return;
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var v = entry.target;
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+        var playPromise = v.play();
+        if (playPromise && playPromise.catch) playPromise.catch(function () {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: [0, 0.45, 0.75] });
+  videos.forEach(function (v) {
+    v.muted = true;
+    io.observe(v);
+  });
+}
+
 function setupTourSlideshows() {
   const rows = document.querySelectorAll('[data-slideshow]');
   if (!rows.length) return;
@@ -335,4 +357,5 @@ document.addEventListener('DOMContentLoaded', function () {
   setupHeroRotator();
   setupTourSlideshows();
   setupTourSeasonAnalytics();
+  setupHistoryAutoplay();
 });
