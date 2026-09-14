@@ -123,6 +123,7 @@ const BUSY = [
   '2026-10-29',
   '2026-10-30',
   '2026-10-31',
+  '2027-02-24',
   '2027-09-06',
   '2027-09-07',
   '2027-09-08',
@@ -138,7 +139,7 @@ const BUSY = [
   '2027-10-07',
   '2027-10-08',
   '2027-10-09',
-  '2027-10-10',
+  '2027-10-10'
 ];
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
