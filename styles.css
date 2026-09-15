@@ -524,3 +524,23 @@ p { margin: 0 0 0.85rem; }
 .yt-lightbox::backdrop { background: rgba(20,14,8,0.72); }
 .yt-lightbox-bar { display: flex; justify-content: flex-end; margin-bottom: 0.5rem; }
 .yt-lightbox-frame { margin: 0; }
+
+/* Discreet AdSense footer unit */
+.site-ad-footer {
+  max-width: 42rem;
+  margin: 1.25rem auto 0.5rem;
+  padding: 0.65rem 1rem 0.85rem;
+  text-align: center;
+}
+.site-ad-footer .ad-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 0.35rem;
+}
+.site-ad-footer .adsbygoogle {
+  display: block;
+  min-height: 90px;
+}
