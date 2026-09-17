@@ -297,6 +297,23 @@ function setupTourSeasonAnalytics() {
 
 
 
+
+function setupCernaOutboundAnalytics() {
+  if (typeof gtag !== 'function') return;
+  var links = document.querySelectorAll('a.js-cerna-outbound, a[href*="cernabizuterie"]');
+  links.forEach(function (a) {
+    a.addEventListener('click', function () {
+      var href = a.href || a.getAttribute('href') || '';
+      gtag('event', 'cerna_link_click', {
+        event_category: 'outbound',
+        event_label: 'cerna_bizuterie',
+        link_url: href,
+        link_page: location.pathname
+      });
+    });
+  });
+}
+
 function setupYtScrollAndEnlarge() {
   var cards = document.querySelectorAll('.yt-card[data-yt-id]');
   if (!cards.length) return;
@@ -399,6 +416,7 @@ document.addEventListener('DOMContentLoaded', function () {
   setupHeroRotator();
   setupTourSlideshows();
   setupTourSeasonAnalytics();
+  setupCernaOutboundAnalytics();
   setupHistoryAutoplay();
   setupYtScrollAndEnlarge();
 });
