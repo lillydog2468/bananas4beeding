@@ -128,7 +128,7 @@
     </div>
     <div class="groups-audio-bar">
       <audio id="groups-music" loop preload="metadata" src="images/groups-slideshow/music/easy-going-geoff-harvey-pixabay.mp3"></audio>
-      <button type="button" class="btn btn-outline" id="music-toggle" aria-pressed="false" aria-controls="groups-music">Play music</button>
+      <button type="button" class="btn btn-outline" id="music-toggle" aria-pressed="false" aria-controls="groups-music" aria-label="Mute music">Mute</button>
       <p class="note music-credit">Music: <cite>Easy Going</cite> by Geoff Harvey, via <a href="https://pixabay.com/music/traditional-jazz-easy-going-370740/">Pixabay</a>.</p>
     </div>
   </div>
@@ -181,24 +181,47 @@
   var btn = document.getElementById('music-toggle');
   if (!audio || !btn) return;
   audio.volume = 0.28;
-  audio.muted = true;
-  btn.addEventListener('click', function () {
+  audio.muted = false;
+
+  function setMutedUi(muted) {
+    audio.muted = muted;
+    btn.textContent = muted ? 'Unmute' : 'Mute';
+    btn.setAttribute('aria-pressed', muted ? 'true' : 'false');
+    btn.setAttribute('aria-label', muted ? 'Unmute music' : 'Mute music');
+  }
+
+  function tryPlay() {
+    var p = audio.play();
+    if (p && p.then) {
+      return p.then(function () {
+        setMutedUi(audio.muted);
+      }).catch(function () {
+        return false;
+      });
+    }
+    return Promise.resolve();
+  }
+
+  // Prefer music on; browsers may block until first tap — then start quietly.
+  tryPlay().then(function () {
+    if (!audio.paused) return;
+    function unlock() {
+      tryPlay();
+      document.removeEventListener('pointerdown', unlock);
+      document.removeEventListener('keydown', unlock);
+    }
+    document.addEventListener('pointerdown', unlock, { once: true });
+    document.addEventListener('keydown', unlock, { once: true });
+  });
+
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
     if (audio.paused) {
       audio.muted = false;
-      var play = audio.play();
-      if (play && play.then) {
-        play.then(function () {
-          btn.textContent = 'Mute';
-          btn.setAttribute('aria-pressed', 'true');
-          btn.setAttribute('aria-label', 'Mute music');
-        }).catch(function () {});
-      }
-    } else {
-      audio.pause();
-      btn.textContent = 'Play music';
-      btn.setAttribute('aria-pressed', 'false');
-      btn.setAttribute('aria-label', 'Play music');
+      tryPlay();
+      return;
     }
+    setMutedUi(!audio.muted);
   });
 })();
 </script>
