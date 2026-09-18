@@ -4,25 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Our groups (preview) · Bananas for beading</title>
+  <title>Our groups · Bananas for beading</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .preview-banner {
-      background: var(--yellow);
-      color: var(--green);
-      text-align: center;
-      font-family: var(--sans);
-      font-weight: 600;
-      font-size: 1.02rem;
-      letter-spacing: 0.01em;
-      padding: 0.55rem 1rem;
-      margin: 0;
-    }
-    .groups-intro {
+.groups-intro {
       text-align: center;
       max-width: 40rem;
       margin-inline: auto;
@@ -105,7 +94,6 @@
     <p class="mad-line"><span class="ydot"></span> for ladies who are mad about their beads <span class="ydot"></span></p>
   </div>
 </header>
-<p class="preview-banner" role="status">Preview — not live yet</p>
 <main id="main">
   <div class="wrap prose groups-intro">
     <h1>Our groups</h1>
@@ -191,19 +179,38 @@
   var slides = document.querySelectorAll('.groups-show img');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var i = 0;
-  if (!reduce && slides.length > 1) {
-    window.setInterval(function () {
-      slides[i].classList.remove('is-shown');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('is-shown');
-    }, 6500);
+  var timer = null;
+
+  function nextSlide() {
+    if (slides.length < 2) return;
+    slides[i].classList.remove('is-shown');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('is-shown');
+  }
+
+  function startSlides() {
+    if (reduce || slides.length < 2 || timer) return;
+    timer = window.setInterval(nextSlide, 6500);
+  }
+
+  function stopSlides() {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = null;
+    }
   }
 
   var audio = document.getElementById('groups-music');
   var btn = document.getElementById('music-toggle');
-  if (!audio || !btn) return;
-  audio.volume = 0.28;
+  if (!audio || !btn) {
+    startSlides();
+    return;
+  }
+
+  // Very quiet — background only, won't jump anyone
+  audio.volume = 0.08;
   audio.muted = false;
+  var userMuted = false;
 
   function setMutedUi(muted) {
     audio.muted = muted;
@@ -213,10 +220,11 @@
   }
 
   function tryPlay() {
+    if (userMuted) return Promise.resolve();
     var p = audio.play();
     if (p && p.then) {
       return p.then(function () {
-        setMutedUi(audio.muted);
+        setMutedUi(false);
       }).catch(function () {
         return false;
       });
@@ -224,9 +232,33 @@
     return Promise.resolve();
   }
 
-  // Prefer music on; browsers may block until first tap — then start quietly.
+  function pauseForAway() {
+    stopSlides();
+    if (!audio.paused) audio.pause();
+  }
+
+  function resumeIfLooking() {
+    startSlides();
+    if (!userMuted) tryPlay();
+  }
+
+  function pageIsAway() {
+    return document.hidden || document.visibilityState === 'hidden';
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    if (pageIsAway()) pauseForAway();
+    else resumeIfLooking();
+  });
+
+  window.addEventListener('pagehide', pauseForAway);
+  window.addEventListener('blur', function () {
+    // Only pause if the whole tab/window lost focus (not every click)
+    if (document.visibilityState === 'hidden') pauseForAway();
+  });
+
   tryPlay().then(function () {
-    if (!audio.paused) return;
+    if (!audio.paused || userMuted) return;
     function unlock() {
       tryPlay();
       document.removeEventListener('pointerdown', unlock);
@@ -238,13 +270,17 @@
 
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
-    if (audio.paused) {
-      audio.muted = false;
+    if (audio.paused && !userMuted) {
       tryPlay();
       return;
     }
-    setMutedUi(!audio.muted);
+    userMuted = !audio.muted;
+    setMutedUi(userMuted);
+    if (!userMuted && !pageIsAway()) tryPlay();
+    if (userMuted) audio.pause();
   });
+
+  if (!pageIsAway()) startSlides();
 })();
 </script>
 </body>
