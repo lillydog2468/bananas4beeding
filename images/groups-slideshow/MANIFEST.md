@@ -1,10 +1,10 @@
 # Groups slideshow assets (preview)
 
-All twelve pack photographs are on this branch, plus the music files.
+Twenty-one tour group photographs are on this branch, plus the music files.
 
 ## Photographs (1600×1000)
 
-- `group-01.jpg` … `group-12.jpg`
+- `group-01.jpg` … `group-21.jpg`
 
 `groups-slideshow-preview.html` lists them in that order. There is no
 live-site workshop stand-in.
