@@ -1,26 +1,24 @@
 # Groups slideshow assets (preview)
 
-The supplied `groups-slideshow-assets` archive arrived truncated (gzip
-ended before the stream finished). Only the first two photographs could
-be recovered intact.
+A second `groups-slideshow-assets.tar.gz` was attached. It is the same
+truncated gzip as the first (about 726–741 KB). Inflating as far as
+possible still only yields two complete photographs. `group-03.jpg` is
+cut off after ~72 KB of a ~340 KB file. `group-04.jpg` … `group-12.jpg`
+and the pack’s original `MANIFEST.md` are not in either upload.
 
-## From the pack
+## On the branch now
 
-- `group-01.jpg` — bead table, 1600×1000
-- `group-02.jpg` — meal together, 1600×1000
-
-Not recovered: `group-03.jpg` … `group-12.jpg`. Drop those files in this
-folder and add matching `<img>` tags on `groups-slideshow-preview.html`
-when you have them.
-
-## Extra for this preview only
-
-- `group-workshop.jpg` — copy of `images/cottage-factory-outside.jpg`
-  (a real group outside a workshop, already on the live site). Included
-  so the sketch can show factory as well as table and supper. Easy to
-  remove if you would rather wait for the rest of the pack.
-
-## Music
-
+- `group-01.jpg` — bead table, 1600×1000 (from the pack)
+- `group-02.jpg` — meal together, 1600×1000 (from the pack)
 - `music/easy-going-geoff-harvey-pixabay.mp3`
 - `music/LICENSE.txt`
+
+The live-site workshop stand-in (`group-workshop.jpg`) has been removed.
+
+## Still missing from the pack
+
+- `group-03.jpg` … `group-12.jpg`
+
+The full archive needs to arrive as more than ~1 MB (twelve 1600×1000
+JPEGs plus the mp3). Drop the remaining files here and add matching
+`<img>` tags on `groups-slideshow-preview.html` when they do.
