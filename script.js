@@ -112,7 +112,6 @@ const BUSY = [
   '2026-09-22',
   '2026-09-23',
   '2026-09-24',
-  '2026-09-25',
   '2026-10-04',
   '2026-10-05',
   '2026-10-06',
@@ -123,6 +122,7 @@ const BUSY = [
   '2026-10-29',
   '2026-10-30',
   '2026-10-31',
+  '2027-02-24',
   '2027-09-06',
   '2027-09-07',
   '2027-09-08',
@@ -138,7 +138,7 @@ const BUSY = [
   '2027-10-07',
   '2027-10-08',
   '2027-10-09',
-  '2027-10-10',
+  '2027-10-10'
 ];
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -242,181 +242,9 @@ function setupHeroRotator() {
   }, 5000);
 }
 
-
-
-
-function setupTourSeasonAnalytics() {
-  if (typeof gtag !== 'function') return;
-  var path = (location.pathname || '').toLowerCase();
-  var page = path.split('/').pop() || 'index.html';
-  if (!page || page.indexOf('.') === -1) page = 'index.html';
-
-  var pageEvents = {
-    'pricing.html': 'view_pricing',
-    'dates.html': 'view_dates',
-    'tour-inspiration.html': 'view_tour_inspiration',
-    'tours.html': 'view_tour_inspiration',
-    'day-trips.html': 'view_day_trips',
-    'contact.html': 'view_contact',
-    'happy-customers.html': 'view_happy_customers'
-  };
-  if (pageEvents[page]) {
-    gtag('event', pageEvents[page], {
-      event_category: 'tour_season',
-      page_path: location.pathname + location.search
-    });
-  }
-
-  document.querySelectorAll('a.btn').forEach(function (a) {
-    a.addEventListener('click', function () {
-      var href = (a.getAttribute('href') || '').toLowerCase();
-      var label = (a.textContent || '').trim().slice(0, 80);
-      var name = 'cta_click';
-      if (href.indexOf('contact') !== -1 || /enquir/i.test(label)) name = 'enquire_click';
-      else if (href.indexOf('pricing') !== -1 || /price/i.test(label)) name = 'pricing_click';
-      else if (href.indexOf('dates') !== -1) name = 'dates_click';
-      else if (href.indexOf('tour') !== -1 || href.indexOf('tours') !== -1) name = 'tour_click';
-      gtag('event', name, {
-        event_category: 'tour_season',
-        event_label: label,
-        link_url: href
-      });
-    });
-  });
-
-  var form = document.getElementById('enquire-form');
-  if (form) {
-    form.addEventListener('submit', function () {
-      gtag('event', 'enquire_submit', {
-        event_category: 'tour_season',
-        event_label: 'contact_form'
-      });
-    });
-  }
-}
-
-
-
-
-function setupCernaOutboundAnalytics() {
-  if (typeof gtag !== 'function') return;
-  var links = document.querySelectorAll('a.js-cerna-outbound, a[href*="cernabizuterie"]');
-  links.forEach(function (a) {
-    a.addEventListener('click', function () {
-      var href = a.href || a.getAttribute('href') || '';
-      gtag('event', 'cerna_link_click', {
-        event_category: 'outbound',
-        event_label: 'cerna_bizuterie',
-        link_url: href,
-        link_page: location.pathname
-      });
-    });
-  });
-}
-
-function setupYtScrollAndEnlarge() {
-  var cards = document.querySelectorAll('.yt-card[data-yt-id]');
-  if (!cards.length) return;
-
-  function post(iframe, func) {
-    if (!iframe || !iframe.contentWindow) return;
-    iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
-  }
-
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var iframe = entry.target.querySelector('iframe');
-        if (!iframe) return;
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.4) post(iframe, 'playVideo');
-        else post(iframe, 'pauseVideo');
-      });
-    }, { threshold: [0, 0.4, 0.75] });
-    cards.forEach(function (card) {
-      var host = card.querySelector('[data-yt-host]');
-      if (host) io.observe(host);
-    });
-  }
-
-  var dlg = document.getElementById('yt-lightbox');
-  var host = dlg ? dlg.querySelector('[data-yt-lightbox-host]') : null;
-  cards.forEach(function (card) {
-    var btn = card.querySelector('[data-yt-enlarge]');
-    if (!btn || !dlg || !host) return;
-    btn.addEventListener('click', function () {
-      var id = card.getAttribute('data-yt-id');
-      host.innerHTML = '<iframe title="Enlarged video" src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-      if (typeof dlg.showModal === 'function') dlg.showModal();
-      else dlg.setAttribute('open', '');
-    });
-  });
-  if (dlg) {
-    dlg.addEventListener('close', function () { if (host) host.innerHTML = ''; });
-  }
-}
-
-function setupHistoryAutoplay() {
-  var videos = document.querySelectorAll('video.history-autoplay');
-  if (!videos.length) return;
-  if (!('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      var v = entry.target;
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
-        var playPromise = v.play();
-        if (playPromise && playPromise.catch) playPromise.catch(function () {});
-      } else {
-        v.pause();
-      }
-    });
-  }, { threshold: [0, 0.45, 0.75] });
-  videos.forEach(function (v) {
-    v.muted = true;
-    io.observe(v);
-  });
-}
-
-function setupTourSlideshows() {
-  const rows = document.querySelectorAll('[data-slideshow]');
-  if (!rows.length) return;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  rows.forEach(function (row) {
-    let images;
-    try { images = JSON.parse(row.getAttribute('data-images') || '[]'); }
-    catch (e) { return; }
-    if (!images.length) return;
-    const imgs = row.querySelectorAll('.slide-slot img');
-    if (!imgs.length) return;
-    let offset = 0;
-    function paint() {
-      imgs.forEach(function (img, slot) {
-        const src = images[(offset + slot) % images.length];
-        if (img.getAttribute('src') === src) return;
-        img.classList.add('is-fading');
-        window.setTimeout(function () {
-          img.src = src;
-          img.classList.remove('is-fading');
-        }, 200);
-      });
-    }
-    paint();
-    if (reduce || images.length <= 3) return;
-    // Advance by a full row so a photo never slides from one box into another
-    window.setInterval(function () {
-      offset = (offset + imgs.length) % images.length;
-      paint();
-    }, 4500);
-  });
-}
-
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.year-grid[data-year]').forEach(drawYear);
   setupTabs();
   setupMailtoForm();
   setupHeroRotator();
-  setupTourSlideshows();
-  setupTourSeasonAnalytics();
-  setupCernaOutboundAnalytics();
-  setupHistoryAutoplay();
-  setupYtScrollAndEnlarge();
 });
