@@ -561,3 +561,60 @@ p { margin: 0 0 0.85rem; }
     max-height: 90px;
   }
 }
+
+/* Food on tour: small captioned photo gallery under "Meals together" */
+.food-gallery {
+  margin: 1.25rem 0 1.85rem;
+  padding: 0.75rem 0.75rem 0.5rem;
+  border-radius: 12px;
+  background: #f7f2e6;
+  box-shadow: 0 2px 12px rgba(40, 30, 10, 0.08);
+}
+.food-gallery-title {
+  margin: 0.1rem 0.2rem 0.2rem;
+}
+.food-gallery-note {
+  margin: 0 0.2rem 0.7rem;
+  font-size: 0.98rem;
+  color: var(--muted);
+}
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+.food-item {
+  margin: 0;
+}
+.food-item a {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #efe8d8;
+}
+.food-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.food-item img.food-pos-right {
+  object-position: 78% 50%;
+}
+.food-item a:hover img,
+.food-item a:focus-visible img {
+  transform: scale(1.03);
+}
+.food-item figcaption {
+  margin: 0.35rem 0.15rem 0.35rem;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
