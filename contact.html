@@ -23,6 +23,7 @@
     .contact-photos { display: grid; gap: 0.75rem; margin: 1rem 0; }
     .contact-photos figure { margin: 0; }
     .contact-photos img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; background: var(--ph); }
+    .contact-photos figure:first-child img { object-position: center 25%; }
     .contact-photos figcaption { font-family: var(--sans); font-size: 1rem; color: var(--muted); margin-top: 0.35rem; text-align: center; }
     @media (min-width: 600px) { .contact-photos { grid-template-columns: repeat(3, 1fr); } }
   </style>
