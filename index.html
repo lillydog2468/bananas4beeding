@@ -24,6 +24,7 @@
     .tile-fade { display: block; position: relative; height: 6.6rem; border-radius: 10px; overflow: hidden; }
     .tile-fade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
     .tile-fade .tile-fade-under { object-position: 50% 15%; }
+    .tile-fade .tile-customers-a1 { object-position: 50% 30%; }
     .tile-fade .tile-fade-top { animation: tile-crossfade 10s ease-in-out infinite; }
     @keyframes tile-crossfade { 0%, 38% { opacity: 1; } 50%, 88% { opacity: 0; } 100% { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .tile-fade .tile-fade-top { animation: none; opacity: 1; } }
@@ -81,7 +82,7 @@
   <div class="wrap tiles">
     <a class="tile" href="tour-inspiration.html"><span class="tile-fade"><img class="tile-fade-under" src="images/tile-tours-pressing.jpg" width="800" height="600" alt="Red-hot glass in a bead-pressing machine"><img class="tile-fade-top" src="images/tile-tours-lampwork.jpg" width="800" height="600" alt="Hands shaping glass rods in a lampwork flame"></span><span class="tile-label">Tour inspiration</span></a>
     <a class="tile" href="jablonec.html"><img src="images/tile-jablonec.jpg" alt="Yellow old town hall on the square in Jablonec"><span class="tile-label">Jablonec</span></a>
-    <a class="tile" href="happy-customers.html"><img src="images/tile-customers.jpg" alt="A hand holding colourful glass beads"><span class="tile-label">Happy customers</span></a>
+    <a class="tile" href="happy-customers.html"><span class="tile-fade"><img class="tile-fade-under" src="images/tile-customers-shopper-2.jpg" width="300" height="150" alt=""><img class="tile-fade-top tile-customers-a1" src="images/tile-customers-shopper-1.jpg" width="800" height="400" alt="A happy tour guest holding her bag of Czech glass beads"></span><span class="tile-label">Happy customers</span></a>
     <a class="tile" href="dates.html"><img src="images/tile-dates.jpg" alt="A desk calendar"><span class="tile-label">Dates</span></a>
   </div>
 
