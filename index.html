@@ -23,10 +23,15 @@
     /* Homepage "Tour inspiration" tile: gentle CSS-only crossfade */
     .tile-fade { display: block; position: relative; height: 6.6rem; border-radius: 10px; overflow: hidden; }
     .tile-fade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-    .tile-fade .tile-fade-under { object-position: 50% 30%; }
+    .tile-fade .tile-fade-under { object-position: 50% 15%; }
     .tile-fade .tile-fade-top { animation: tile-crossfade 10s ease-in-out infinite; }
     @keyframes tile-crossfade { 0%, 38% { opacity: 1; } 50%, 88% { opacity: 0; } 100% { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .tile-fade .tile-fade-top { animation: none; opacity: 1; } }
+    /* Homepage header: photo crossfade in place of the cartoon logo mark */
+    .logo-fade { position: relative; aspect-ratio: 7 / 8; border-radius: 12px; overflow: hidden; }
+    .logo-fade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .logo-fade .logo-fade-top { animation: tile-crossfade 10s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .logo-fade .logo-fade-top { animation: none; opacity: 1; } }
   </style>
 </head>
 <body class="page-home">
@@ -34,7 +39,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <div class="wrap header-inner">
     <a href="index.html" class="logo-home" aria-label="Bananas for beading home">
-      <img class="logo-mark" src="images/ladies-mark.png" width="448" height="512" alt="">
+      <span class="logo-mark logo-fade"><img class="logo-fade-under" src="images/home-shopper-2.jpg" width="224" height="256" alt=""><img class="logo-fade-top" src="images/home-shopper-1.jpg" width="224" height="256" alt="A happy tour guest holding her bag of Czech glass beads"></span>
       <span class="wordmark">
         <span class="wordmark-bananas">Bananas</span>
         <span class="wordmark-row2">
