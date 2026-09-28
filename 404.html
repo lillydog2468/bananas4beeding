@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page not found · Bananas for beading</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-761VCYGKWC"></script>
 <script>
@@ -24,8 +24,8 @@
 <header class="site-header">
   <a class="skip" href="#main">Skip to content</a>
   <div class="wrap header-inner">
-    <a href="index.html" class="logo-home" aria-label="Bananas for beading home">
-      <img class="logo-mark" src="images/ladies-mark.png" width="448" height="512" alt="">
+    <a href="/" class="logo-home" aria-label="Bananas for beading home">
+      <img class="logo-mark" src="/images/ladies-mark.png" width="448" height="512" alt="">
       <span class="wordmark">
         <span class="wordmark-bananas">Bananas</span>
         <span class="wordmark-row2">
@@ -36,20 +36,76 @@
     </a>
     <div class="header-right">
       <p class="tagline-hand">Get in touch with your beads.</p>
-      <nav class="nav-main" aria-label="Main"><a href="tour-inspiration.html">Tour inspiration</a><a href="dates.html">Dates</a><a href="about.html">About</a><a href="happy-customers.html">Happy customers</a><a href="contact.html">Contact</a></nav>
+      <nav class="nav-main" aria-label="Main"><a href="/tour-inspiration.html">Tour inspiration</a><a href="/dates.html">Dates</a><a href="/about.html">About</a><a href="/happy-customers.html">Happy customers</a><a href="/contact.html">Contact</a></nav>
     </div>
     <p class="mad-line"><span class="ydot"></span> for ladies who are mad about their beads <span class="ydot"></span></p>
   </div>
 </header>
 <main id="main">
   <div class="wrap prose">
-    <h1>That page isn’t here.</h1>
-    <p>Back to home, or pick a page from the menu.</p>
+    <h1>Oops, that page has wandered off.</h1>
+    <p id="nf-moving" hidden><strong>Just a moment, taking you to the right page…</strong></p>
+    <p>Sorry about that. The link you followed may be from our old website, or the page has moved. Everything you need is still here, and we’d love to help you plan your beading trip to the Czech Republic.</p>
     <div class="btn-row">
-      <a class="btn btn-filled" href="index.html">Back to home</a>
+      <a class="btn btn-filled" href="/contact.html">Enquire about 2026/2027 dates</a>
     </div>
+    <p>Or have a look around:</p>
+    <div class="btn-row">
+      <a class="btn btn-outline" href="/tour-inspiration.html">Tours</a>
+      <a class="btn btn-outline" href="/pricing.html">Prices</a>
+      <a class="btn btn-outline" href="/dates.html">Dates</a>
+      <a class="btn btn-outline" href="/happy-customers.html">Happy customers</a>
+    </div>
+    <p><a href="/">Back to the home page</a></p>
   </div>
 </main>
+<script>
+/* Old EverWeb links: send known patterns to the right page. Unknown paths stay on this page. */
+(function () {
+  var raw = location.pathname;
+  try { raw = decodeURIComponent(raw); } catch (e) {}
+  var p = raw.toLowerCase()
+    .replace(/\/index\.html?$/, '')
+    .replace(/\/+$/, '')
+    .replace(/\.html?$/, '')
+    .replace(/^\/(home|beading4beading|mobile)\//, '/');
+  var name = p.replace(/^\//, '');
+  var pages = ['pricing','happy-customers','tour-inspiration','contact','about','dates','day-trips',
+    'come-again','groups','bring-your-bead-club','jablonec','videos','written-about-us','the-cats-meow',
+    'bead-society-of-great-britain-journal-114','czech-delights-by-olive-humm-bead-workers-guild-'];
+  var target = null;
+  if (name === '' || name === 'index' || name === 'welcome' || name === 'home') target = '/';
+  else if (pages.indexOf(name) !== -1) target = '/' + name + '.html';
+  else {
+    var rules = [
+      [/day[-_ ]?trip|1[-_]day/, '/day-trips.html'],
+      [/happy|c[ou]stomer|review|testimon/, '/happy-customers.html'],
+      [/date|calend[ae]r/, '/dates.html'],
+      [/pric|cost/, '/pricing.html'],
+      [/contact|book|enquir|inquir/, '/contact.html'],
+      [/tour|popular|break|inspiration|prague/, '/tour-inspiration.html'],
+      [/about|history|making/, '/about.html'],
+      [/video/, '/videos.html'],
+      [/written|press|article/, '/written-about-us.html'],
+      [/club/, '/bring-your-bead-club.html'],
+      [/group/, '/groups.html'],
+      [/news-?letter|welcome/, '/']
+    ];
+    for (var i = 0; i < rules.length; i++) {
+      if (rules[i][0].test(name)) { target = rules[i][1]; break; }
+    }
+  }
+  if (!target) return;
+  var msg = document.getElementById('nf-moving');
+  if (msg) msg.hidden = false;
+  var gone = false;
+  function go() { if (!gone) { gone = true; location.replace(target + location.hash); } }
+  try {
+    gtag('event', 'old_link_redirect', { old_path: location.pathname, new_path: target, event_callback: go });
+  } catch (e) {}
+  setTimeout(go, 700);
+})();
+</script>
 
 <aside class="site-ad-footer" aria-label="Advertisement">
   <span class="ad-label">Advertisement</span>
@@ -64,9 +120,9 @@
   <div class="wrap">
     <p class="foot-contact">bananas4beading.com <span class="ydot"></span> <a href="tel:+420606588330">+420 606 588 330</a></p>
     <p class="foot-copy">© Bananas for beading · bananas4beading.com</p>
-    <nav class="foot-extra" aria-label="More pages"><a href="day-trips.html">Day trips</a> · <a href="pricing.html">Pricing</a> · <a href="videos.html">Videos</a> · <a href="written-about-us.html">Written about us</a></nav>
+    <nav class="foot-extra" aria-label="More pages"><a href="/day-trips.html">Day trips</a> · <a href="/pricing.html">Pricing</a> · <a href="/videos.html">Videos</a> · <a href="/written-about-us.html">Written about us</a></nav>
   </div>
 </footer>
-<script src="script.js?v=20260907season"></script>
+<script src="/script.js?v=20260907season"></script>
 </body>
 </html>
