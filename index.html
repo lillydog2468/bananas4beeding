@@ -28,9 +28,47 @@
     .tile-fade .tile-fade-top { animation: tile-crossfade 10s ease-in-out infinite; }
     @keyframes tile-crossfade { 0%, 38% { opacity: 1; } 50%, 88% { opacity: 0; } 100% { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .tile-fade .tile-fade-top { animation: none; opacity: 1; } }
-    /* Keith Dudman: sunrise above the tiles, same column width as the hero */
+    /* Hills above the tiles, same column width as the hero. CSS crossfade, 5s each. */
     .home-sunrise { margin: 0.15rem auto 1.1rem; }
-    .home-sunrise img { width: 100%; height: auto; border-radius: 12px; }
+    .home-sunrise .view-fade {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #c5c1b4;
+    }
+    .home-sunrise .view-fade img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 12px;
+      opacity: 0;
+      animation: view-crossfade 45s ease-in-out infinite;
+    }
+    .home-sunrise .view-fade img:nth-child(1) { animation-delay: -1.2s; }
+    .home-sunrise .view-fade img:nth-child(2) { animation-delay: 3.8s; }
+    .home-sunrise .view-fade img:nth-child(3) { animation-delay: 8.8s; }
+    .home-sunrise .view-fade img:nth-child(4) { animation-delay: 13.8s; }
+    .home-sunrise .view-fade img:nth-child(5) { animation-delay: 18.8s; }
+    .home-sunrise .view-fade img:nth-child(6) { animation-delay: 23.8s; }
+    .home-sunrise .view-fade img:nth-child(7) { animation-delay: 28.8s; }
+    .home-sunrise .view-fade img:nth-child(8) { animation-delay: 33.8s; }
+    .home-sunrise .view-fade img:nth-child(9) { animation-delay: 38.8s; }
+    @keyframes view-crossfade {
+      0% { opacity: 0; }
+      2.6667% { opacity: 1; }
+      11.1111% { opacity: 1; }
+      13.7778% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .home-sunrise .view-fade img { animation: none; opacity: 0; }
+      .home-sunrise .view-fade img.view-still { opacity: 1; }
+    }
     .home-sunrise figcaption {
       margin: 0.45rem 0 0;
       text-align: center;
@@ -98,8 +136,18 @@
     </div>
   </div>
   <figure class="home-sunrise wrap">
-    <img src="images/sunrise-jablonec.jpg" width="1600" height="900" alt="Sunrise over the hills above Jablonec">
-    <figcaption>Sunrise over the hills above Jablonec.</figcaption>
+    <div class="view-fade">
+      <img src="images/view-01.jpg" width="1600" height="900" alt="">
+      <img src="images/view-02.jpg" width="1600" height="1200" alt="">
+      <img src="images/view-03.jpg" width="1600" height="1200" alt="">
+      <img src="images/view-04.jpg" width="1600" height="1200" alt="">
+      <img src="images/view-05.jpg" width="1600" height="913" alt="">
+      <img class="view-still" src="images/view-06.jpg" width="1600" height="900" alt="">
+      <img src="images/view-07.jpg" width="1600" height="900" alt="">
+      <img src="images/view-08.jpg" width="1600" height="900" alt="">
+      <img src="images/view-09.jpg" width="1600" height="900" alt="">
+    </div>
+    <figcaption>The hills above Jablonec, through the year.</figcaption>
   </figure>
   <div class="wrap tiles">
     <a class="tile" href="tour-inspiration.html"><span class="tile-fade"><img class="tile-fade-under" src="images/tile-tours-pressing.jpg" width="800" height="600" alt="Red-hot glass in a bead-pressing machine"><img class="tile-fade-top" src="images/tile-tours-lampwork.jpg" width="800" height="600" alt="Hands shaping glass rods in a lampwork flame"></span><span class="tile-label">Tour inspiration</span></a>
