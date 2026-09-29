@@ -39,6 +39,18 @@
       line-height: 1.35;
       color: var(--muted);
     }
+    /* Jablonec tile: keep the clock tower in the short cover crop, plus a discreet photo credit */
+    .tile-jablonec .tile { display: block; }
+    .tile-jablonec img { object-position: center 12%; }
+    .tile-photo-credit {
+      margin: 0.2rem 0 0;
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 0.72rem;
+      line-height: 1.3;
+      color: var(--muted);
+    }
+    .tile-photo-credit a { color: inherit; }
   </style>
 </head>
 <body class="page-home">
@@ -91,7 +103,10 @@
   </figure>
   <div class="wrap tiles">
     <a class="tile" href="tour-inspiration.html"><span class="tile-fade"><img class="tile-fade-under" src="images/tile-tours-pressing.jpg" width="800" height="600" alt="Red-hot glass in a bead-pressing machine"><img class="tile-fade-top" src="images/tile-tours-lampwork.jpg" width="800" height="600" alt="Hands shaping glass rods in a lampwork flame"></span><span class="tile-label">Tour inspiration</span></a>
-    <a class="tile" href="jablonec.html"><img src="images/tile-jablonec.jpg" alt="Yellow old town hall on the square in Jablonec"><span class="tile-label">Jablonec</span></a>
+    <div class="tile-jablonec">
+      <a class="tile" href="jablonec.html"><img src="images/jablonec-town-hall.jpg" width="1600" height="1372" alt="New Town Hall on Mírové náměstí, Jablonec nad Nisou"><span class="tile-label">Jablonec</span></a>
+      <p class="tile-photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Jablonec_nad_Nisou_172_-_Nova_radnice_(Mirove_namesti).jpg">Photo: Matěj Baťha, CC BY-SA 3.0</a></p>
+    </div>
     <a class="tile" href="happy-customers.html"><span class="tile-fade"><img class="tile-fade-under" src="images/tile-customers-shopper-2.jpg" width="300" height="150" alt=""><img class="tile-fade-top tile-customers-a1" src="images/tile-customers-shopper-1.jpg" width="800" height="400" alt="A happy tour guest holding her bag of Czech glass beads"></span><span class="tile-label">Happy customers</span></a>
     <a class="tile" href="dates.html"><img src="images/tile-dates.jpg" alt="A desk calendar"><span class="tile-label">Dates</span></a>
   </div>
