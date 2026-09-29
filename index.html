@@ -28,6 +28,17 @@
     .tile-fade .tile-fade-top { animation: tile-crossfade 10s ease-in-out infinite; }
     @keyframes tile-crossfade { 0%, 38% { opacity: 1; } 50%, 88% { opacity: 0; } 100% { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .tile-fade .tile-fade-top { animation: none; opacity: 1; } }
+    /* Keith Dudman: sunrise above the tiles, same column width as the hero */
+    .home-sunrise { margin: 0.15rem auto 1.1rem; }
+    .home-sunrise img { width: 100%; height: auto; border-radius: 12px; }
+    .home-sunrise figcaption {
+      margin: 0.45rem 0 0;
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.35;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body class="page-home">
@@ -74,6 +85,10 @@
       <a class="btn btn-outline" href="contact.html">Say hello</a>
     </div>
   </div>
+  <figure class="home-sunrise wrap">
+    <img src="images/sunrise-jablonec.jpg" width="1600" height="900" alt="Sunrise over the hills above Jablonec">
+    <figcaption>Sunrise over the hills above Jablonec.</figcaption>
+  </figure>
   <div class="wrap tiles">
     <a class="tile" href="tour-inspiration.html"><span class="tile-fade"><img class="tile-fade-under" src="images/tile-tours-pressing.jpg" width="800" height="600" alt="Red-hot glass in a bead-pressing machine"><img class="tile-fade-top" src="images/tile-tours-lampwork.jpg" width="800" height="600" alt="Hands shaping glass rods in a lampwork flame"></span><span class="tile-label">Tour inspiration</span></a>
     <a class="tile" href="jablonec.html"><img src="images/tile-jablonec.jpg" alt="Yellow old town hall on the square in Jablonec"><span class="tile-label">Jablonec</span></a>
