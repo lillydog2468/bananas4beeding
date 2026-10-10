@@ -343,6 +343,14 @@ p { margin: 0 0 0.85rem; }
   text-decoration-thickness: 2.5px;
 }
 
+/* "More pages" links: moved up from the footer to sit just below the page content */
+.more-pages {
+  padding: 0 0 1.5rem;
+  font-family: var(--sans);
+  text-align: center;
+}
+.more-pages .foot-extra { margin: 0; }
+
 .quote-body {
   display: flex;
   flex-direction: column;
