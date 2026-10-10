@@ -899,3 +899,27 @@ p { margin: 0 0 0.85rem; }
 .photo-fade--15 img:nth-child(13) { animation-delay: 59.0s; }
 .photo-fade--15 img:nth-child(14) { animation-delay: 64.0s; }
 .photo-fade--15 img:nth-child(15) { animation-delay: 69.0s; }
+@keyframes photo-crossfade-16 {
+  0% { opacity: 0; }
+  1.2500% { opacity: 1; }
+  6.2500% { opacity: 1; }
+  7.5000% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.photo-fade--16 img { animation: photo-crossfade-16 80s ease-in-out infinite; }
+.photo-fade--16 img:nth-child(1) { animation-delay: -1.0s; }
+.photo-fade--16 img:nth-child(2) { animation-delay: 4.0s; }
+.photo-fade--16 img:nth-child(3) { animation-delay: 9.0s; }
+.photo-fade--16 img:nth-child(4) { animation-delay: 14.0s; }
+.photo-fade--16 img:nth-child(5) { animation-delay: 19.0s; }
+.photo-fade--16 img:nth-child(6) { animation-delay: 24.0s; }
+.photo-fade--16 img:nth-child(7) { animation-delay: 29.0s; }
+.photo-fade--16 img:nth-child(8) { animation-delay: 34.0s; }
+.photo-fade--16 img:nth-child(9) { animation-delay: 39.0s; }
+.photo-fade--16 img:nth-child(10) { animation-delay: 44.0s; }
+.photo-fade--16 img:nth-child(11) { animation-delay: 49.0s; }
+.photo-fade--16 img:nth-child(12) { animation-delay: 54.0s; }
+.photo-fade--16 img:nth-child(13) { animation-delay: 59.0s; }
+.photo-fade--16 img:nth-child(14) { animation-delay: 64.0s; }
+.photo-fade--16 img:nth-child(15) { animation-delay: 69.0s; }
+.photo-fade--16 img:nth-child(16) { animation-delay: 74.0s; }
