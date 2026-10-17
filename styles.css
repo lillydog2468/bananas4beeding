@@ -22,6 +22,14 @@ body {
   line-height: 1.58;
 }
 img { max-width: 100%; height: auto; display: block; }
+picture { display: block; }
+.hero-rotator picture { display: none; }
+.hero-rotator picture:has(img.is-active) { display: block; }
+.slide-slot picture,
+.groups-show picture,
+.photo-fade picture,
+.tile-fade picture,
+.view-fade picture { display: contents; }
 a { color: var(--green); }
 .skip {
   position: absolute; left: -999px; top: 0;
