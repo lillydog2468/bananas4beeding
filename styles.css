@@ -247,6 +247,31 @@ main { padding-bottom: 2.4rem; }
 h1, h2, h3 { font-family: var(--display); color: var(--green); font-weight: 600; line-height: 1.2; }
 h1 { font-size: clamp(2.05rem, 5.2vw, 2.95rem); margin: 1.2rem 0 0.8rem; text-align: center; }
 .page-home h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+
+.page-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.85rem;
+  row-gap: 0.25rem;
+  margin: 1.2rem 0 0.8rem;
+}
+.page-title h1 { margin: 0; }
+.page-title img {
+  width: 160px;
+  height: auto;
+  flex: 0 0 auto;
+}
+@media (min-width: 700px) {
+  .page-title img { width: 240px; }
+}
+.page-home .page-title h1 {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
 h2 { font-size: 1.48rem; margin: 1.5rem 0 0.45rem; }
 p { margin: 0 0 0.85rem; }
 .lede { font-size: 1.38rem; color: var(--green); }
