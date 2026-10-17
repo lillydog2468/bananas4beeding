@@ -203,10 +203,26 @@ a { color: var(--green); }
 }
 
 .tiles {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 0.8rem;
-  margin: 0.4rem 0 2.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 0.8rem;
+  width: min(70rem, calc(100% - 1.5rem));
+  margin: 0.4rem auto 2.2rem;
 }
-@media (min-width: 900px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
+.tiles > .tile,
+.tiles > .tile-jablonec {
+  width: calc((100% - 0.8rem) / 2);
+  max-width: calc((100% - 0.8rem) / 2);
+  min-width: 0;
+}
+@media (min-width: 900px) {
+  .tiles > .tile,
+  .tiles > .tile-jablonec {
+    width: calc((100% - 2.4rem) / 4);
+    max-width: calc((100% - 2.4rem) / 4);
+  }
+}
 .tile { text-decoration: none; color: var(--green); text-align: center; }
 .tile img { width: 100%; height: 6.6rem; object-fit: cover; border-radius: 10px; }
 .tile-label {
@@ -386,11 +402,17 @@ p { margin: 0 0 0.85rem; }
 
 /* Story pages — photos between paragraphs */
 .story-photo {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 52vh;
+  object-fit: contain;
   border-radius: 12px;
-  margin: 0.7rem 0 1.2rem;
+  margin: 0.7rem auto 1.2rem;
   display: block;
+}
+@media (min-width: 800px) {
+  .story-photo { max-height: 60vh; }
 }
 .story-photos {
   display: grid;
@@ -402,17 +424,24 @@ p { margin: 0 0 0.85rem; }
   .story-photos { grid-template-columns: 1fr 1fr; }
 }
 .story-photos img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 52vh;
+  object-fit: contain;
   border-radius: 12px;
   display: block;
+  margin-inline: auto;
+}
+@media (min-width: 800px) {
+  .story-photos img { max-height: 60vh; }
 }
 
 .story-fig {
   margin: 0.7rem 0 1.2rem;
 }
 .story-fig .story-photo {
-  margin: 0 0 0.45rem;
+  margin: 0 auto 0.45rem;
 }
 .story-cap {
   margin: 0;
@@ -486,12 +515,19 @@ p { margin: 0 0 0.85rem; }
   margin: 1rem 0 1.5rem;
 }
 .article-scan img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 52vh;
+  object-fit: contain;
   display: block;
+  margin-inline: auto;
   border-radius: 8px;
   box-shadow: 0 2px 14px rgba(40, 30, 10, 0.1);
   background: #f7f2e6;
+}
+@media (min-width: 800px) {
+  .article-scan img { max-height: 60vh; }
 }
 
 
@@ -512,6 +548,10 @@ p { margin: 0 0 0.85rem; }
   overflow: hidden;
   background: #efe8d8;
   aspect-ratio: 4 / 3;
+  max-height: 52vh;
+}
+@media (min-width: 800px) {
+  .slide-slot { max-height: 60vh; }
 }
 .slide-slot img {
   width: 100%;
@@ -556,7 +596,19 @@ p { margin: 0 0 0.85rem; }
 }
 
 /* Native video on history pages */
-.story-fig video.story-photo { display: block; width: 100%; height: auto; max-height: 70vh; object-fit: cover; background: #1a1510; }
+.story-fig video.story-photo {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 52vh;
+  object-fit: contain;
+  margin-inline: auto;
+  background: #1a1510;
+}
+@media (min-width: 800px) {
+  .story-fig video.story-photo { max-height: 60vh; }
+}
 
 /* Compact YouTube card + enlarge lightbox */
 .yt-card { max-width: 22rem; margin: 0.85rem 0 1.4rem; }
@@ -696,12 +748,12 @@ p { margin: 0 0 0.85rem; }
 /* Gentle single-frame CSS slideshows (same idea as home hills view) */
 .photo-fade {
   position: relative;
-  width: 100%;
+  width: min(100%, calc(52vh * 4 / 3));
   aspect-ratio: 4 / 3;
   border-radius: 12px;
   overflow: hidden;
   background: #c5c1b4;
-  margin: 0.85rem 0 0.45rem;
+  margin: 0.85rem auto 0.45rem;
   box-shadow: 0 2px 12px rgba(40, 30, 10, 0.08);
 }
 .photo-fade img {
@@ -709,13 +761,26 @@ p { margin: 0 0 0.85rem; }
   inset: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
+  max-height: none;
   object-fit: cover;
   object-position: center center;
   border-radius: 12px;
   opacity: 0;
 }
-.photo-fade.photo-fade--wide { aspect-ratio: 16 / 9; }
-.photo-fade.photo-fade--tall { aspect-ratio: 3 / 4; }
+.photo-fade.photo-fade--wide {
+  aspect-ratio: 16 / 9;
+  width: min(100%, calc(52vh * 16 / 9));
+}
+.photo-fade.photo-fade--tall {
+  aspect-ratio: 3 / 4;
+  width: min(100%, calc(52vh * 3 / 4));
+}
+@media (min-width: 800px) {
+  .photo-fade { width: min(100%, calc(60vh * 4 / 3)); }
+  .photo-fade.photo-fade--wide { width: min(100%, calc(60vh * 16 / 9)); }
+  .photo-fade.photo-fade--tall { width: min(100%, calc(60vh * 3 / 4)); }
+}
 .photo-fade-caption {
   margin: 0 0 1.25rem;
   text-align: center;
