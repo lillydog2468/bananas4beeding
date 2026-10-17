@@ -26,6 +26,25 @@
     .contact-photos figure:first-child img { object-position: center 25%; }
     .contact-photos figcaption { font-family: var(--sans); font-size: 1rem; color: var(--muted); margin-top: 0.35rem; text-align: center; }
     @media (min-width: 600px) { .contact-photos { grid-template-columns: repeat(3, 1fr); } }
+    .enquire-box { background: #fff; border-radius: 12px; padding: 1.1rem; margin: 1.25rem 0; box-shadow: 0 2px 10px rgba(31,74,56,.08); border-top: 4px solid var(--yellow); }
+    .enquire-form { display: grid; gap: 1rem; }
+    .enquire-form label { display: block; font-family: var(--sans); font-weight: 600; color: var(--green); font-size: 1.05rem; }
+    .enquire-form input[type=text], .enquire-form input[type=email], .enquire-form input[type=tel], .enquire-form input[type=number], .enquire-form textarea { font: 400 1.05rem var(--sans); padding: .7rem .8rem; border: 1.5px solid #c9c2b0; border-radius: 8px; background: var(--cream); color: var(--ink); width: 100%; box-sizing: border-box; min-height: 48px; display: block; margin-top: .35rem; }
+    .enquire-form input:focus, .enquire-form textarea:focus { outline: 3px solid var(--yellow); border-color: var(--green); }
+    .enquire-form .opt { font-weight: 400; color: var(--muted); font-size: .95rem; }
+    .choice { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+    .choice legend { font-family: var(--sans); font-weight: 600; color: var(--green); font-size: 1.05rem; margin-bottom: .4rem; }
+    .enquire-form .choice label { display: inline-flex; flex-direction: row; white-space: nowrap; width: auto; margin: 0; align-items: center; gap: .4rem; font-weight: 400; color: var(--ink); background: var(--cream); border: 1.5px solid #c9c2b0; border-radius: 999px; padding: .5rem .9rem; min-height: 44px; box-sizing: border-box; cursor: pointer; }
+    .enquire-form .choice input { margin: 0; width: auto; min-height: 0; }
+    .enquire-form .choice label:has(input:checked) { background: var(--yellow); border-color: var(--green); }
+    .enquire-form .btn { width: 100%; font-size: 1.15rem; border: 0; cursor: pointer; }
+    .hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .form-status { font-family: var(--sans); margin: 0; color: var(--muted); }
+    .form-status.err { color: #a32020; }
+    .thanks h2 { font-family: var(--display); color: var(--green); margin-top: 0; }
+    .contact-alt { text-align: center; margin: 1.5rem 0; }
+    .alt-head { font-family: var(--hand); font-size: 1.8rem; color: var(--green); margin-bottom: .2rem; }
+    @media (min-width: 700px) { .enquire-box { padding: 1.75rem 2rem; } .enquire-form .btn { width: auto; justify-self: start; padding-left: 2rem; padding-right: 2rem; } }
   </style>
 </head>
 <body>
@@ -52,32 +71,67 @@
 <main id="main">
   <div class="wrap prose">
     <h1>Contact</h1>
-    <p class="lede"><a href="mailto:bananas4beading@icloud.com">bananas4beading@icloud.com</a></p>
-    <p class="lede"><a href="tel:+420606588330">+420 606 588 330</a></p>
-    <p>Phone or text us, and we’ll call you back.</p>
+    <p class="lede">We’d love to hear from you. Tell us a little about yourself and your bead friends, and Keith will write back personally, usually within a day or two.</p>
     <p>Bringing a bead club or a small group of about five or six? There is a short page, <a href="bring-your-bead-club.html">Bring your bead club</a>, if you would like a quiet look first. One organiser and one email thread is plenty.</p>
-    <form class="form" id="enquire-form" action="mailto:bananas4beading@icloud.com" method="post" enctype="text/plain">
-      <label for="name">Name
+
+    <div class="enquire-box" id="enquire-box">
+    <form class="form enquire-form" id="enquire-form" action="https://formsubmit.co/bananas4beading@icloud.com" method="POST">
+      <input type="hidden" name="_subject" value="New tour enquiry from bananas4beading.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://bananas4beading.com/thank-you.html">
+      <div class="hp" aria-hidden="true">
+        <label for="website">Leave this empty <input type="text" id="website" name="_honey" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <label for="name">Your name
         <input type="text" id="name" name="name" required autocomplete="name">
       </label>
       <label for="email">Email
-        <input type="email" id="email" name="email" required autocomplete="email">
+        <input type="email" id="email" name="email" required autocomplete="email" inputmode="email">
       </label>
-      <label for="dates">Preferred dates
-        <input type="text" id="dates" name="preferred-dates">
+      <label for="phone">Phone <span class="opt">(optional)</span>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel">
       </label>
-      <label for="length">Tour length
-        <input type="text" id="length" name="tour-length" placeholder="Day trip, 3 days, 5 days…">
+      <label for="size">How many in your group?
+        <input type="number" id="size" name="group_size" min="1" max="30" inputmode="numeric" placeholder="e.g. 4">
       </label>
-      <label for="size">Group size
-        <input type="text" id="size" name="group-size">
+      <fieldset class="choice">
+        <legend>Preferred tour length</legend>
+        <label><input type="radio" name="tour_length" value="Day trip"> Day trip</label>
+        <label><input type="radio" name="tour_length" value="2 days"> 2 days</label>
+        <label><input type="radio" name="tour_length" value="3 days"> 3 days</label>
+        <label><input type="radio" name="tour_length" value="4 days"> 4 days</label>
+        <label><input type="radio" name="tour_length" value="5 days"> 5 days</label>
+        <label><input type="radio" name="tour_length" value="Not sure yet"> Not sure yet</label>
+      </fieldset>
+      <fieldset class="choice">
+        <legend>Which year?</legend>
+        <label><input type="radio" name="year" value="2026"> 2026</label>
+        <label><input type="radio" name="year" value="2027"> 2027</label>
+        <label><input type="radio" name="year" value="Flexible"> Flexible</label>
+      </fieldset>
+      <label for="dates">Dates you have in mind <span class="opt">(see <a href="dates.html">Dates</a>)</span>
+        <input type="text" id="dates" name="preferred_dates" placeholder="A tour date, a month, or ‘any time’">
       </label>
-      <label for="message">Message
-        <textarea id="message" name="message" rows="6"></textarea>
+      <label for="message">Your message
+        <textarea id="message" name="message" rows="6" required placeholder="Tell us what you love to bead, what you’d like to see, or any questions at all."></textarea>
       </label>
-      <button class="btn btn-filled" type="submit">Enquire</button>
+      <button class="btn btn-filled" type="submit">Send my enquiry</button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
     </form>
-    <p class="note">This opens an email to us. You can wire it to Formspree later if you want.</p>
+    <div class="thanks" id="enquire-thanks" hidden tabindex="-1">
+      <h2>Thank you!</h2>
+      <p>Your enquiry is on its way to Keith. He reads every one himself and will be in touch soon, usually within a day or two.</p>
+      <p>Can’t wait? Ring or text <a href="tel:+420606588330">+420 606 588 330</a>.</p>
+    </div>
+    </div>
+
+    <div class="contact-alt">
+      <p class="alt-head">Prefer to write or ring?</p>
+      <p class="lede"><a href="mailto:bananas4beading@icloud.com">bananas4beading@icloud.com</a></p>
+      <p class="lede"><a href="tel:+420606588330">+420 606 588 330</a></p>
+      <p>Phone or text us, and we’ll call you back.</p>
+    </div>
 
     <aside class="hotel-fun" aria-label="A little fun from the hotel">
       <img src="images/hotel/phone-call-home.jpg" width="1182" height="666" alt="A quiet phone call home from the hotel" loading="lazy" decoding="async">
@@ -128,5 +182,29 @@
   </div>
 </footer>
 <script src="script.js?v=20260907season"></script>
+<script>
+(function () {
+  var form = document.getElementById('enquire-form');
+  if (!form || !window.fetch) return;
+  var status = document.getElementById('form-status');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (form._honey && form._honey.value) return;
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; status.className = 'form-status'; status.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/bananas4beading@icloud.com', {
+      method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+    }).then(function (r) { return r.json().then(function (d) { if (!r.ok || String(d.success) === 'false') throw d; }); })
+      .then(function () {
+        form.hidden = true;
+        var t = document.getElementById('enquire-thanks'); t.hidden = false; t.focus();
+      })
+      .catch(function () {
+        btn.disabled = false; status.className = 'form-status err';
+        status.innerHTML = 'Sorry, that didn’t go through. Please email <a href="mailto:bananas4beading@icloud.com">bananas4beading@icloud.com</a> or ring <a href="tel:+420606588330">+420 606 588 330</a>.';
+      });
+  });
+})();
+</script>
 </body>
 </html>
