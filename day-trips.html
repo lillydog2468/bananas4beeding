@@ -9,6 +9,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
   <link rel="stylesheet" href="styles.css?v=20261017slides">
+  <style>
+    .day-snaps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.7rem;
+      margin: 0.15rem 0 1.2rem;
+    }
+    .day-snaps figure {
+      margin: 0;
+      flex: 0 0 auto;
+      width: min(10.5rem, calc(50% - 0.4rem));
+    }
+    .day-snaps img {
+      width: 100%;
+      height: 7.6rem;
+      max-height: 28vh;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+    .day-snaps figcaption {
+      margin: 0.28rem 0.05rem 0;
+      text-align: center;
+      font-size: 0.82rem;
+      line-height: 1.3;
+      color: var(--muted);
+    }
+  </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-761VCYGKWC"></script>
 <script>
@@ -45,12 +74,24 @@
   <div class="wrap prose">
     <h1>Day trips</h1>
     <p>A day trip is a perfect way to explore bead production and squeeze in some shopping, even if you’re short on time.</p>
+    <div class="day-snaps" aria-label="Beads, a workshop, and Jablonec">
+      <figure>
+        <picture><source type="image/webp" srcset="images/shopping/shopping-02-480.webp 480w, images/shopping/shopping-02-960.webp 960w, images/shopping/shopping-02-1024.webp 1024w" sizes="(min-width: 700px) 13rem, calc(50vw - 1.5rem)"><img src="images/shopping/shopping-02-960.jpg" alt="Trays of Matubo and seed beads on a shop table" data-full="images/shopping/shopping-02.jpg" srcset="images/shopping/shopping-02-480.jpg 480w, images/shopping/shopping-02-960.jpg 960w, images/shopping/shopping-02-1024.jpg 1024w" sizes="(min-width: 700px) 13rem, calc(50vw - 1.5rem)" width="1024" height="768" loading="lazy" decoding="async"></picture>
+        <figcaption>Seed beads</figcaption>
+      </figure>
+      <figure>
+        <picture><source type="image/webp" srcset="images/cottage-lampwork-480.webp 480w, images/cottage-lampwork-960.webp 960w, images/cottage-lampwork-1182.webp 1182w" sizes="(min-width: 700px) 13rem, calc(50vw - 1.5rem)"><img src="images/cottage-lampwork-960.jpg" alt="Lamp-work at a wooden bench: glass rods, metal moulds and a small flame" data-full="images/cottage-lampwork.jpg" srcset="images/cottage-lampwork-480.jpg 480w, images/cottage-lampwork-960.jpg 960w, images/cottage-lampwork-1182.jpg 1182w" sizes="(min-width: 700px) 13rem, calc(50vw - 1.5rem)" width="1182" height="666" loading="lazy" decoding="async"></picture>
+        <figcaption>Lamp-work</figcaption>
+      </figure>
+      <figure>
+        <picture><source type="image/webp" srcset="images/jablonec-reservoir-480.webp 480w, images/jablonec-reservoir-960.webp 960w, images/jablonec-reservoir-1600.webp 1600w" sizes="(min-width: 700px) 13rem, calc(50vw - 1.5rem)"><img src="images/jablonec-reservoir-960.jpg" alt="Still water at dusk, a stone dam wall with a metal railing, and tall conifers reflected in the reservoir" data-full="images/jablonec-reservoir.jpg" srcset="images/jablonec-reservoir-480.jpg 480w, images/jablonec-reservoir-960.jpg 960w, images/jablonec-reservoir-1600.jpg 1600w" sizes="(min-width: 700px) 13rem, calc(50vw - 1.5rem)" width="1600" height="1200" loading="lazy" decoding="async"></picture>
+        <figcaption>Jablonec reservoir</figcaption>
+      </figure>
+    </div>
     <h2>A typical day trip</h2>
     <p>Pickup from your Prague hotel at 8 a.m., then to Jablonec nad Nisou — a must-visit town for bead lovers. The drive typically takes about an hour and a half.</p>
-    <div class="ph" role="img" aria-label="OWNER TO ADD: lampwork factory / workshop">OWNER TO ADD: lampwork factory / workshop</div>
     <p>First stop is a lampwork factory and workshop. You’ll watch a group of highly skilled women make it look effortless, and you can even try it yourself. You’ll quickly realise that crafting even a colourful glass blob isn’t as easy as it seems. They offer a stunning collection of lampwork beads, plus a fantastic array of jewellery.</p>
     <p>Next we explore how beads are pressed, tumbled, faceted and fire-polished. We’ll also visit the Museum of Beads and Glass before heading off to shop.</p>
-    <div class="ph" role="img" aria-label="OWNER TO ADD: museum / shop">OWNER TO ADD: museum / shop</div>
     <p>We’re flexible and aim to tailor the rest of the day to your preferences, getting you back to your Prague hotel between 5 and 7 p.m.</p>
     <p>This is just a guide — email us to discuss the possibilities.</p>
     <p>If you have a little extra time, Czechia has many other places worth seeing — castles, cathedrals and quiet historic corners. See <a href="hidden-treasures.html">hidden treasures</a>.</p>
