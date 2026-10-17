@@ -204,19 +204,6 @@ function setupTabs() {
   });
 }
 
-function setupMailtoForm() {
-  const form = document.getElementById('enquire-form');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const val = function (id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
-    const lines = ['Name: ' + val('name'), 'Email: ' + val('email'), 'Preferred dates: ' + val('dates'), 'Tour length: ' + val('length'), 'Group size: ' + val('size'), '', val('message')];
-    const subject = encodeURIComponent('Beading tour enquiry from ' + (val('name') || 'website'));
-    const body = encodeURIComponent(lines.join('\n'));
-    window.location.href = 'mailto:bananas4beading@icloud.com?subject=' + subject + '&body=' + body;
-  });
-}
-
 function setupHeroRotator() {
   const box = document.querySelector('.hero-rotator');
   if (!box) return;
@@ -410,7 +397,6 @@ function setupTourSlideshows() {
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.year-grid[data-year]').forEach(drawYear);
   setupTabs();
-  setupMailtoForm();
   setupHeroRotator();
   setupTourSlideshows();
   setupTourSeasonAnalytics();
