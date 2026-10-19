@@ -177,6 +177,27 @@ a { color: var(--green); }
   .btn-row .btn { width: auto; min-width: 13rem; }
   .form .btn { width: auto; min-width: 12rem; }
 }
+.phone-enquire { display: none; }
+@media (max-width: 700px) {
+  .phone-enquire {
+    display: flex;
+    position: fixed;
+    z-index: 40;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+    width: auto;
+    margin: 0;
+    padding: 1.05rem 1.1rem;
+    font-size: 1.22rem;
+    line-height: 1.25;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(31, 74, 56, 0.28);
+  }
+  body:has(.phone-enquire) {
+    padding-bottom: calc(5.8rem + env(safe-area-inset-bottom, 0px));
+  }
+}
 
 /* Home */
 .hero { margin: 0.25rem auto 0.7rem; }
