@@ -673,6 +673,14 @@
       400
     ]
   },
+  "images/reviews/linda-john-st-vitus.jpg": {
+    "w": 768,
+    "h": 1024,
+    "widths": [
+      480,
+      768
+    ]
+  },
   "images/reviews/eileen-ranson-throne.jpg": {
     "w": 600,
     "h": 600,

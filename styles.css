@@ -415,7 +415,8 @@ p { margin: 0 0 0.85rem; }
   object-fit: cover;
   border-radius: 8px;
 }
-.quote-body > blockquote { min-width: 0; flex: 1; }
+.quote-body > blockquote,
+.quote-body > .quote-copy { min-width: 0; flex: 1; }
 @media (min-width: 700px) {
   .quote-body { flex-direction: row; align-items: flex-start; }
   .quote-body > .quote-photo {
