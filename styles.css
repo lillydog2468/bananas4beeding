@@ -148,7 +148,7 @@ a { color: var(--green); }
 @media (min-width: 800px) {
   .site-header { padding: 0.7rem 0 0.55rem; }
   .header-inner {
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: auto minmax(0, max-content) minmax(0, 1fr);
     grid-template-areas:
       "logo right ."
       "mad mad .";
@@ -156,9 +156,11 @@ a { color: var(--green); }
     align-items: start;
   }
   .logo-mark { height: 7.7rem; }
-  .header-right { text-align: left; padding-top: 0.2rem; }
+  .header-right { min-width: 0; text-align: left; padding-top: 0.2rem; }
   .tagline-hand { font-size: 1.95rem; margin-top: 0; }
-  .nav-main { justify-content: flex-start; flex-wrap: nowrap; }
+  /* Wrap once the row no longer fits. nowrap overflows around 150% zoom,
+     where the viewport is still wider than this 800px breakpoint. */
+  .nav-main { justify-content: flex-start; flex-wrap: wrap; }
   .mad-line { margin-top: 0.1rem; }
 }
 
@@ -398,35 +400,39 @@ p { margin: 0 0 0.85rem; }
 
 .quote-body {
   display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
+  flex-flow: row wrap;
+  gap: 0.7rem 1rem;
   align-items: flex-start;
+}
+/* The flex item is the picture (or a stack of them), not the img inside it.
+   A definite width stops each photo's intrinsic ratio from widening the row. */
+.quote-body > picture,
+.quote-body > .quote-photos {
+  flex: 0 1 18.75rem;
+  width: 18.75rem;
+  max-width: 100%;
+  min-width: 0;
 }
 .quote-photos {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: min(18.75rem, 100%);
 }
-.quote-photo {
-  width: min(18.75rem, 100%);
-  height: 23.5rem;
+.quote-photos picture { max-width: 100%; }
+.quote-body img.quote-photo {
+  width: auto;
+  height: auto;
   max-width: 100%;
-  object-fit: cover;
+  max-height: 23.5rem;
   border-radius: 8px;
 }
+/* Text takes the rest of the row, and wraps underneath once it no longer fits
+   beside the photo (narrow windows and browser zoom). */
 .quote-body > blockquote,
-.quote-body > .quote-copy { min-width: 0; flex: 1; }
-@media (min-width: 700px) {
-  .quote-body { flex-direction: row; align-items: flex-start; }
-  .quote-body > .quote-photo {
-    flex: 0 0 18.75rem;
-    width: 18.75rem;
-  }
-  .quote-photos {
-    flex: 0 0 18.75rem;
-    width: 18.75rem;
-  }
+.quote-body > .quote-copy {
+  flex: 1 1 18rem;
+  min-width: min(18rem, 100%);
+  max-width: 100%;
 }
 
 
