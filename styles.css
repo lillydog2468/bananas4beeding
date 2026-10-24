@@ -31,6 +31,9 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 picture { display: block; }
+/* Keep the mark itself as the flex item. A displayed source would open a gap. */
+.logo-home picture { display: contents; }
+.logo-home picture source { display: none; }
 .hero-rotator picture { display: none; }
 .hero-rotator picture:has(img.is-active) { display: block; }
 /* The page starts with two slides marked active so a wide screen can show a pair.
