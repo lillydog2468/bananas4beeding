@@ -90,6 +90,40 @@
       color: var(--muted);
     }
     .tile-photo-credit a { color: inherit; }
+    /* Phones only. Desktop keeps the existing hero and copy. */
+    .phone-intro { display: none; }
+    @media (max-width: 600px) {
+      .page-home .hero,
+      .page-home .home-band { display: none; }
+      .phone-intro {
+        display: block;
+        width: min(70rem, calc(100% - 1.5rem));
+        margin: 0.2rem auto 0.35rem;
+      }
+      .phone-intro img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 12px;
+        background: #c5c1b4;
+      }
+      .phone-intro p {
+        margin: 0.65rem 0 0;
+        color: var(--green);
+        font-size: 1.15rem;
+        line-height: 1.35;
+        text-align: center;
+      }
+      .phone-intro .btn-row { margin: 0.75rem 0 0.1rem; }
+      .phone-intro .btn {
+        width: 100%;
+        font-size: 1.22rem;
+        padding: 1.05rem 1rem;
+        line-height: 1.2;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body class="page-home">
@@ -115,14 +149,26 @@
 </header>
 <main id="main">
   <h1>Bananas for beading</h1>
+  <section class="phone-intro">
+    <picture>
+      <source media="(max-width: 600px)" type="image/webp" srcset="images/tile-tours-pressing-480.webp 480w, images/tile-tours-pressing-800.webp 800w" sizes="calc(100vw - 1.5rem)">
+      <source media="(max-width: 600px)" srcset="images/tile-tours-pressing-480.jpg 480w, images/tile-tours-pressing-800.jpg 800w" sizes="calc(100vw - 1.5rem)">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Red-hot glass in a bead-pressing machine" width="800" height="600" decoding="async" fetchpriority="high">
+    </picture>
+    <p>Beading holidays in Jablonec, Czech Republic, with a small family business.</p>
+    <div class="btn-row">
+      <a class="btn btn-filled" href="pricing.html">Tours &amp; prices</a>
+      <a class="btn btn-outline" href="dates.html">Dates</a>
+    </div>
+  </section>
   <div class="hero wrap">
     <div class="hero-rotator" aria-roledescription="carousel">
-      <picture><source type="image/webp" srcset="images/hero-480.webp 480w, images/hero-583.webp 583w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="images/hero-583.jpg" class="is-active" alt="Jablonec nad Nisou from Hotel Petřín: rooftops, 1930s town-hall tower, hills and reservoir" data-full="images/hero.jpg" srcset="images/hero-480.jpg 480w, images/hero-583.jpg 583w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)" width="583" height="326"></picture>
-      <picture><source type="image/webp" srcset="images/hero-square-480.webp 480w, images/hero-square-960.webp 960w, images/hero-square-1557.webp 1557w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="images/hero-square-960.jpg" class="is-active" alt="Vintage Jablonec square with the town-hall clock tower and market" data-full="images/hero-square.jpg" srcset="images/hero-square-480.jpg 480w, images/hero-square-960.jpg 960w, images/hero-square-1557.jpg 1557w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)" width="1557" height="971"></picture>
-      <picture><source type="image/webp" srcset="images/hero-old-market-480.webp 480w, images/hero-old-market-869.webp 869w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="images/hero-old-market-869.jpg" alt="Old postcard of the market square in Jablonec" data-full="images/hero-old-market.jpg" srcset="images/hero-old-market-480.jpg 480w, images/hero-old-market-869.jpg 869w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)" width="869" height="579"></picture>
-      <picture><source type="image/webp" srcset="images/hero-autumn-441.webp 441w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="images/hero-autumn-441.jpg" alt="Jablonec in autumn, rooftops, reservoir and hills" data-full="images/hero-autumn.jpg" srcset="images/hero-autumn-441.jpg 441w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)" width="441" height="319"></picture>
-      <picture><source type="image/webp" srcset="images/hero-villas-480.webp 480w, images/hero-villas-557.webp 557w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="images/hero-villas-557.jpg" alt="Old postcard of the villa quarter and church in Jablonec" data-full="images/hero-villas.jpg" srcset="images/hero-villas-480.jpg 480w, images/hero-villas-557.jpg 557w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)" width="557" height="278"></picture>
-      <picture><source type="image/webp" srcset="images/hero-market-480.webp 480w, images/hero-market-525.webp 525w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="images/hero-market-525.jpg" alt="Vintage market day in the Jablonec square" data-full="images/hero-market.jpg" srcset="images/hero-market-480.jpg 480w, images/hero-market-525.jpg 525w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)" width="525" height="285"></picture>
+      <picture><source media="(min-width: 601px)" type="image/webp" srcset="images/hero-480.webp 480w, images/hero-583.webp 583w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><source media="(min-width: 601px)" srcset="images/hero-480.jpg 480w, images/hero-583.jpg 583w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="is-active" alt="Jablonec nad Nisou from Hotel Petřín: rooftops, 1930s town-hall tower, hills and reservoir" data-full="images/hero.jpg" width="583" height="326"></picture>
+      <picture><source media="(min-width: 601px)" type="image/webp" srcset="images/hero-square-480.webp 480w, images/hero-square-960.webp 960w, images/hero-square-1557.webp 1557w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><source media="(min-width: 601px)" srcset="images/hero-square-480.jpg 480w, images/hero-square-960.jpg 960w, images/hero-square-1557.jpg 1557w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="is-active" alt="Vintage Jablonec square with the town-hall clock tower and market" data-full="images/hero-square.jpg" width="1557" height="971"></picture>
+      <picture><source media="(min-width: 601px)" type="image/webp" srcset="images/hero-old-market-480.webp 480w, images/hero-old-market-869.webp 869w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><source media="(min-width: 601px)" srcset="images/hero-old-market-480.jpg 480w, images/hero-old-market-869.jpg 869w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Old postcard of the market square in Jablonec" data-full="images/hero-old-market.jpg" width="869" height="579"></picture>
+      <picture><source media="(min-width: 601px)" type="image/webp" srcset="images/hero-autumn-441.webp 441w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><source media="(min-width: 601px)" srcset="images/hero-autumn-441.jpg 441w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Jablonec in autumn, rooftops, reservoir and hills" data-full="images/hero-autumn.jpg" width="441" height="319"></picture>
+      <picture><source media="(min-width: 601px)" type="image/webp" srcset="images/hero-villas-480.webp 480w, images/hero-villas-557.webp 557w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><source media="(min-width: 601px)" srcset="images/hero-villas-480.jpg 480w, images/hero-villas-557.jpg 557w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Old postcard of the villa quarter and church in Jablonec" data-full="images/hero-villas.jpg" width="557" height="278"></picture>
+      <picture><source media="(min-width: 601px)" type="image/webp" srcset="images/hero-market-480.webp 480w, images/hero-market-525.webp 525w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><source media="(min-width: 601px)" srcset="images/hero-market-480.jpg 480w, images/hero-market-525.jpg 525w" sizes="(min-width: 700px) 36rem, calc(100vw - 1.5rem)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Vintage market day in the Jablonec square" data-full="images/hero-market.jpg" width="525" height="285"></picture>
     </div>
   </div>
   <div class="wrap home-band">
