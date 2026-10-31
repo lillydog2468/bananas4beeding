@@ -187,7 +187,14 @@
 <script>
 (function () {
   var params = new URLSearchParams(location.search);
-  if (params.get('joining') !== '10-14-may-2027') return;
+  var joining = params.get('joining');
+  if (joining === 'future-group-tours') {
+    var fnote = 'Interested in a future group tour';
+    var fsubject = document.querySelector('input[name="_subject"]');
+    if (fsubject) fsubject.value = fnote;
+    return;
+  }
+  if (joining !== '10-14-may-2027') return;
   var note = 'Joining 10–14 May 2027';
   var dates = document.getElementById('dates');
   if (dates && !dates.value) dates.value = note;
