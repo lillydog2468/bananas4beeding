@@ -188,6 +188,11 @@
 (function () {
   var params = new URLSearchParams(location.search);
   var joining = params.get('joining');
+  if (joining === '31-may-2027') {
+    var jsubject = document.querySelector('input[name="_subject"]');
+    if (jsubject) jsubject.value = 'Interested in joining the 31 May – 4 June 2027 tour';
+    return;
+  }
   if (joining === 'march-2027-day-trip') {
     var msubject = document.querySelector('input[name="_subject"]');
     if (msubject) msubject.value = 'Interested in joining the 3 or 6 March 2027 day trip';
