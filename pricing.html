@@ -22,6 +22,26 @@
       text-align: center;
     }
     .price-enquire p { margin: 0.6rem 0 0; font-size: 1.08rem; }
+    .enquire-hero { margin: 0.35rem auto 0.85rem; max-width: 40rem; }
+    .enquire-hero img {
+      width: 100%;
+      height: auto;
+      max-height: 42vh;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+    .enquire-hero-cta { margin: 0 0 1.15rem; }
+    .enquire-hero-cta .btn {
+      width: 100%;
+      font-size: 1.18rem;
+      padding: 1rem 1.1rem;
+      text-align: center;
+      min-height: 52px;
+    }
+    @media (min-width: 800px) {
+      .enquire-hero-cta .btn { width: auto; min-width: 16rem; }
+    }
   </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-761VCYGKWC"></script>
@@ -57,6 +77,15 @@
 </header>
 <main id="main">
   <div class="wrap prose">
+    <figure class="enquire-hero">
+      <picture>
+        <source type="image/webp" srcset="images/cottage-factory-outside-480.webp 480w, images/cottage-factory-outside-960.webp 960w, images/cottage-factory-outside-1600.webp 1600w" sizes="(min-width: 800px) 40rem, calc(100vw - 1.5rem)">
+        <img src="images/cottage-factory-outside-960.jpg" alt="A small cottage glass factory in the hills near Jablonec" srcset="images/cottage-factory-outside-480.jpg 480w, images/cottage-factory-outside-960.jpg 960w, images/cottage-factory-outside-1600.jpg 1600w" sizes="(min-width: 800px) 40rem, calc(100vw - 1.5rem)" width="1600" height="900" decoding="async" fetchpriority="high">
+      </picture>
+    </figure>
+    <div class="btn-row enquire-hero-cta">
+      <a class="btn btn-filled" href="contact.html">Enquire about 2027 dates</a>
+    </div>
     <h1>Pricing 2027</h1>
     <p>2027 prices, per person, for a standard beading tour.</p>
     <ul class="price-list">
