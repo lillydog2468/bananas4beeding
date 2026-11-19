@@ -206,8 +206,10 @@
       method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
     }).then(function (r) { return r.json().then(function (d) { if (!r.ok || String(d.success) === 'false') throw d; }); })
       .then(function () {
-        form.hidden = true;
+        Array.prototype.forEach.call(form.children, function (el) { if (el !== btn) el.hidden = true; });
+        status.textContent = '';
         var t = document.getElementById('enquire-thanks'); t.hidden = false; t.focus();
+        setTimeout(function () { btn.textContent = 'Sent'; }, 5000);
       })
       .catch(function () {
         btn.disabled = false; status.className = 'form-status err';
